@@ -1,0 +1,42 @@
+.login {
+    /*display: none;*/
+}
+
+
+
+/*******************************/
+/*********** MAIN DIV **********/
+/*******************************/
+.all-orgs {
+    margin: 2% 4% 2% 4%;
+}
+
+/* organisation cards */
+.org-card {
+    display: flex;
+    flex-direction: column;
+    margin: 5% 15% 5% 15%;
+    align-items: center;
+    background: #576490;
+    position: relative;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+    overflow: hidden;
+    color: white;
+}
+
+/* organisation card container*/
+.org-card-container {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+}
+
+/*images for organisation cards */
+.org-card img {
+    width: 100%;
+    height: 400px;
+    border-radius: 15px 15px 15px 15px;
+    object-fit: cover;
+}

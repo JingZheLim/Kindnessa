@@ -1,0 +1,165 @@
+body {
+    color: #333533;
+    background-color: #FFFFFF;
+    padding: 0;
+    margin: 0;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+/*******************************/
+/************ HEADER ***********/
+/*******************************/
+.header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #576490;
+    color: #FFFFFF;
+    border-bottom: 1px solid #333533;
+}
+
+ul {
+    padding-left: 0;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: #CFDBD5;
+    /* Change color */
+    text-decoration: none;
+    margin: auto;
+    font-size: 20px;
+    /* maybe */
+    font-weight: bold;
+}
+
+.logo_color {
+    color: black;
+    /* Change color */
+    text-decoration: none;
+}
+
+.dropdown-content .manager-tools {
+    display: none;
+}
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+    text-align: center;
+}
+
+.dropdown .dropbtn {
+    font-size: 30px;
+    border: none;
+    outline: none;
+    color: #CFDBD5;
+    padding: 25px 5%;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    min-width: 100px;
+}
+
+.image_container {
+    max-width: 100%;
+}
+
+.slogan {
+    background-color: #7796CB;
+}
+
+.slogan_inner {
+    text-align: center;
+    color: white;
+    padding: 50px 100px 0px 100px;
+}
+
+.slogan_inner_1 {
+    text-align: center;
+    color: white;
+    padding: 0px 100px 50px 100px;
+    font-size: 20px;
+}
+
+/* organisation cards */
+.org-card {
+    background-color: #d1d2f9;
+    overflow: hidden;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+/* organisation card container*/
+.org-card-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+
+}
+
+/* define text within organisation card */
+.org-card-content {
+    padding: 2px 16px;
+    font: "Lucida Grande", Helvetica, Arial, sans-serif;
+    text-align: center;
+    background-color: #576490;
+    justify-content: flex-end;
+}
+
+/*images for organisation cards */
+.org-card-image {
+    width: 100%;
+    height: auto;
+}
+
+/* page titles */
+.page-title {
+    font: "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+/*footer*/
+footer {
+    background-color: #7796CB;
+    color: black;
+    padding: 30px;
+    position: auto;
+    bottom: 0;
+    width: 100%;
+    font-family: 'Libre Franklin';
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-text {
+    color: black;
+    margin-left: 30px;
+    margin-right: 30px;
+
+}
+
+.footer-text hr {
+    border: none;
+    border-top: 1px solid black;
+    text-align: left
+}
+
+.social-links {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.social-links a {
+    color: black;
+}

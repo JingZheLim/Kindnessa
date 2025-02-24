@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kindnessa</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/manager/stylesheets/edit_individual_event.css">
+    <link rel="stylesheet" href="../headFoot.css">
+    <link rel="stylesheet" href="../adminManager.css">
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="../javascripts/check_login.js" defer></script>
+    <script src="../javascripts/manager_ajax.js"></script>
+    <script src="../javascripts/web.js" defer></script>
+
+
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/3b05a2b1b3.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="header-container" id="app2">
+        <div class="header">
+            <a class="logo-color" href="../"><i class="fa-solid fa-hand-holding-heart fa-2xl"></i> Kindnessa</a>
+            <a href="../general/about.html">About</a>
+            <a href="../general/organisation.html">Organisations</a>
+            <a href="../general/newfeeds.html">News Feed</a>
+            <a href="../general/event.html">Events</a>
+            <a href="../general/contact.html">Contact Us</a>
+            <!-- Add login icon -->
+            <a v-show="!logged_in" href="../general/login.html" class="login"><i class="fas fa-sign-in-alt"></i> Log
+                in</a>
+            <div v-show="logged_in" class="dropdown">
+                <button type="button" class="dropbtn"><i class="fa-solid fa-user"></i>
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="../user/profile.html">Profile</a>
+                    <a v-if="!check_admin" href="../user/joined_events.html">My Events</a>
+                    <a v-if="!check_admin" href="../user/joined_orgs.html">My Organisations</a>
+                    <a v-if="check_manager" href="../manager" class="manager-tools">Manager
+                        Tools</a>
+                    <a v-if="check_admin" href="../admin" class="manager-tools">Admin Tools</a>
+                    <a href="../general/logout.html" @click="logout()">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--The header-->
+    <div class="page-title">
+        <div class="inside-page">
+            <p>Management Tools</p>
+        </div>
+    </div>
+
+    <!--The main body-->
+    <div class="main-div">
+        <aside class="side-bar"> <!-- Buttons (Left div)-->
+            <button onclick="location.href='/manager'" type="button">BACK</button>
+            <button class="highlight" type="button">MANAGE EVENTS</button>
+        </aside>
+
+        <main class="managing-section create-field">
+            <div class="user-field">
+                <p id="title">Edit Event</p>
+                <form id="edit-event-form" @submit.prevent="submitEvent" class="create-field">
+                    <input type="hidden" id="EventId" name="eventId" value="">
+
+                    <div class="input-container">
+                        <label for="Title">Title</label>
+                        <input type="text" id="Title" class="input-text">
+                    </div>
+
+                    <div class="input-container">
+                        <label for="Date">Date</label>
+                        <input type="date" id="Date" class="input-text">
+                    </div>
+
+                    <div class="input-container">
+                        <label for="Date">Time</label>
+                        <input type="time" id="Time" class="input-text">
+                    </div>
+
+                    <div class="input-container">
+                        <label for="Location">Location</label>
+                        <input type="text" id="Location" class="input-text">
+                    </div>
+
+                    <div class="input-container">
+                        <label>Image</label>
+                        <input type="file" id="Image" class="input-file" accept="image/*"
+                            onchange="previewImage(event)">
+                        <div class="button-container_2">
+                            <button type="button" onclick="document.getElementById('Image').click();">Browse</button>
+                        </div>
+                        <img id="preview" src="#" alt="Preview" style="max-width: 100%; display: none;">
+                    </div>
+
+                    <div class="input-container">
+                        <label for="Location">Event Details</label>
+                        <input type="text" id="event_detail" class="input-text">
+                    </div>
+
+                    <div class="input-container">
+                        <label for="orgs">Host</label>
+                        <select id="manager-organisations" v-model="selectedOrg" class="input-text">
+                            <option class="input-text" v-for="org in organisations" :value="org.organisation_id"
+                                :key="org.organisation_id">
+                                {{ org.organisation_name }}
+                            </option>
+                        </select>
+                    </div>
+
+                    <br>
+
+                    <div class="button-container">
+                        <button type="submit" onclick="editEvent()">Save Changes</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </main>
+    </div>
+
+    <!--Footer-->
+    <footer>
+        <div class="inside-footer">
+            <div class="social-links">
+                <div class="links">
+                    <ul class="social-list">
+                        <li class="icons">
+                            <a href="https://www.facebook.com" class="facebook">
+                                <i class="fa-brands fa-square-facebook fa-2xl"></i>
+                            </a>
+                            <div class="tooltip">Facebook</div>
+                        </li>
+                        <li class="icons">
+                            <a href="https://www.twitter.com" class="twitter">
+                                <i class="fa-brands fa-square-x-twitter fa-2xl"></i>
+                            </a>
+                            <div class="tooltip">Twitter</div>
+                        </li>
+                        <li class="icons">
+                            <a href="https://www.instagram.com" class="instagram">
+                                <i class="fa-brands fa-square-instagram fa-2xl"></i>
+                            </a>
+                            <div class="tooltip">Instagram</div>
+                        </li>
+                        <li class="icons">
+                            <a href="https://youtube.com" class="youtube">
+                                <i class="fa-brands fa-youtube fa-2xl"></i>
+                            </a>
+                            <div class="tooltip">Youtube</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-text">
+                <div class="contact-links">
+                    <a href="../general/contact.html">Contact us</a>
+                    <a href="../general/about.html">About us</a>
+                </div>
+                <hr>
+                <div class="text">
+                    <p>Kindessa would like to acknowledge the Traditional Custodians of the many lands on which we
+                        live
+                        and
+                        work.<br>We would also like to pay respect to Elders past and present and extend that
+                        respect to
+                        all
+                        Aboriginal and Torres Strait Islander Peoples.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const eventId = urlParams.get('eventId');
+        loadEventDetails(eventId)
+        function previewImage(event) {
+            const input = event.target;
+            const preview = document.getElementById('preview');
+            const previewText = document.getElementById('preview-text');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                    previewText.style.display = 'none';
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                preview.src = '#';
+                preview.style.display = 'none';
+                previewText.style.display = 'block';
+                previewText.textContent = 'None selected';
+            }
+
+        }
+
+
+        // edit event
+        function editEvent() {
+            event.preventDefault();
+            console.log('Form submitted');
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventId = urlParams.get('eventId');
+            // Validate form fields
+            var event_id = eventId;
+            var title = document.getElementById('Title').value;
+            var date = document.getElementById('Date').value;
+            var time = document.getElementById('Time').value;
+            var location = document.getElementById('Location').value;
+            var description = document.getElementById('event_detail').value;
+            var org_id = document.querySelector('#manager-organisations').value;
+            var image = document.getElementById('Image').files[0];
+
+            if (!title || !date || !time || !location || !description || !org_id) {
+                alert('Please fill in all fields.');
+                return; // Stop the form submission
+            }
+
+                var formData = new FormData();
+                formData.append('event_id', event_id);
+                formData.append('name', title);
+                formData.append('date', date);
+                formData.append('time', time);
+                formData.append('location', location);
+                formData.append('description', description);
+                formData.append('org_id', org_id);
+                formData.append('image', image);
+
+
+
+            fetch('/manager/edit_event', {
+                method: 'POST',
+                body: formData,
+            })
+                .then(response => {
+                    if (response.ok) {
+                        console.log('Event updated successfully');
+                        const confirmed = window.confirm('Event updated successfully!');
+                        if (confirmed) {
+                            window.location.reload();
+                        }
+                    } else {
+                        console.log('Error updating event');
+                        alert('Error updating event');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error submitting form.');
+                });
+
+        }
+    </script>
+
+</body>
+
+</html>

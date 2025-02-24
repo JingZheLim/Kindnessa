@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kindnessa</title>
+    <meta charset="UTF-8">
+    <script src="javascripts/check_login.js" defer></script>
+    <link rel="stylesheet" href="../headFoot.css">
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <link rel="stylesheet" href="/manager/stylesheets/manager_profile.css">
+    <script src="../javascripts/web.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/3b05a2b1b3.js" crossorigin="anonymous"></script>
+</head>
+
+<!--The header of the page-->
+
+<body>
+    <div class="header-container" id="app">
+        <div class="header">
+            <a class="logo-color" href="../"><i class="fa-solid fa-hand-holding-heart fa-2xl"></i> Kindnessa</a>
+            <a href="../general/about.html">About</a>
+            <a href="../general/organisation.html">Organisations</a>
+            <a href="../general/newfeeds.html">News Feed</a>
+            <a href="../general/event.html">Events</a>
+            <a href="../general/contact.html">Contact Us</a>
+            <!-- Add login icon -->
+            <a v-show="!logged_in" href="../general/login.html" class="login"><i class="fas fa-sign-in-alt"></i> Log
+                in</a>
+            <div v-show="logged_in" class="dropdown">
+                <button type="button" class="dropbtn"><i class="fa-solid fa-user"></i>
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="../user/profile.html">Profile</a>
+                    <a href="../user/joined_events.html">My Events</a>
+                    <a href="../user/joined_orgs.html">My Organisations</a>
+                    <a v-if="check_manager" href="../manager/manage_organisations.html" class="manager-tools">Manager
+                        Tools</a>
+                    <a v-if="check_admin" href="../admin/admin.html" class="manager-tools">Admin Tools</a>
+                    <a href="../general/logout.html">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--The header-->
+    <div class="page-title">
+        <div class="inside-page">
+            <p>Profile</p>
+        </div>
+    </div>
+
+    <!--The main body-->
+    <div class="main-div">
+        <div class="side-bar"> <!-- Buttons (Left div)-->
+            <button onclick="location.href='manager_profile.html'" type="button" id="default-button">PROFILE</button>
+            <button onclick="location.href='manager_settings.html'" type="button">ACCOUNT SETTINGS</button>
+            <button onclick="location.href='joined_orgs.html'" type="button">MY ORGANISATION</button>
+            <button onclick="location.href='joined_events.html'" type="button">MY EVENTS</button>
+            <button onclick="location.href='manage_organisations.html'" type="button">MANAGEMENT TOOLS</button>
+            <button onclick="location.href='/general/logout.html'" type="button">LOGOUT</button>
+        </div>
+
+        <div class="edit-profile-container">
+            <div class="user-field"> <!-- Account Info (right div)-->
+                <p id="title">Account Information</p>
+
+                <div class="seperate"> <!--Need to make elements inline-->
+                    <div id="big-text">
+                        <p>ID: 0000000</p>
+                    </div>
+
+                    <div class="button-container">
+                        <button type="button">Edit</button>
+                    </div>
+                </div>
+
+                <!-- First Name -->
+                <div class="input-container">
+                    <label for="first-name">First Name</label>
+                    <input type="text" class="input-text">
+                </div>
+
+                <!-- Last Name -->
+                <div class="input-container">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" class="input-text">
+                </div>
+
+                <!-- Email -->
+                <div class="input-container">
+                    <label for="email">Email</label>
+                    <input type="text" class="input-text">
+                </div>
+            </div>
+
+            <!-- Email Notifications -->
+            <div class="email-notifications">
+                <div>
+                    <h2>Email Notifications</h2>
+                </div>
+                <div>
+                    <p>Emails will be sent to billybroccoli@gmail.com <a href="../user/settings.html">Edit</a></p>
+                </div>
+
+                <div> <!--checkboxes container (covers all the notifications)-->
+
+                    <div class="notification-types">
+                        <div class="notification-head">
+                            <p>Notification (in progress)</p>
+                        </div>
+                        <div class="notification-row">
+                            <input type="checkbox" class="checkboxes"><label for="notif1">BobbiBao</label>
+                        </div>
+                        <div class="notification-row">
+                            <input type="checkbox" class="checkboxes"><label for="notif2">Casper</label>
+                        </div>
+                        <div class="notification-row">
+                            <input type="checkbox" class="checkboxes"><label for="notif3">Limmington Lemons</label>
+                        </div>
+                        <div class="notification-row">
+                            <input type="checkbox" class="checkboxes"><label for="notif4">Yaa Lyine</label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div> <!--End of main body-->
+
+    <!--Footer-->
+    <footer>
+        <div class="inside-footer">
+            <div class="social-links">
+                <div class="logo">
+                    <p><i class="fa-solid fa-hand-holding-heart fa-2xl"></i>Kindnessa </p>
+                </div>
+                <div class="links"><a href="https://www.facebook.com"><i
+                            class="fa-brands fa-square-facebook fa-2xl"></i></a>
+                    <a href="https://www.twitter.com"><i class="fa-brands fa-square-x-twitter fa-2xl"></i></a>
+                    <a href="https://www.instagram.com"><i class="fa-brands fa-square-instagram fa-2xl"></i></a>
+                    <a href="https://youtube.com"><i class="fa-brands fa-youtube fa-2xl"></i></a>
+                </div>
+
+            </div>
+
+            <div class="footer-text">
+                <div class="contact-links">
+                    <a href="https://www.youtube.com/">Contact us</a> |
+                    <a href="https://github.com/">About us</a> |
+                    <a href="https://www.w3schools.com/html/html_links.asp">Newsletter</a>
+                </div>
+                <hr>
+                <div class="text">
+                    <p>Kindessa would like to acknowledge the Traditional Custodians of the many lands on which we
+                        live
+                        and
+                        work.<br>We would also like to pay respect to Elders past and present and extend that
+                        respect to
+                        all
+                        Aboriginal and Torres Strait Islander Peoples.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

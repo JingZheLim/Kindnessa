@@ -1,0 +1,135 @@
+/*******************************/
+/********** PAGE TITLE *********/
+/*******************************/
+.page-title {
+    background-color: #7796CB;
+    /* Background color */
+    /* Padding inside the section */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: black;
+    font-size: 30px;
+    color: #FFFFFF;
+}
+
+.inside-page {
+    margin: 1.5% 5% 1.5% 5%;
+}
+
+/*blank div*/
+#blankDiv {
+    background-color: #f60000;
+    box-sizing: border-box;
+}
+
+/*******************************/
+/*********** MAIN DIV **********/
+/*******************************/
+.main-div {
+    margin: 2% 5% 0% 5%;
+}
+
+.filter-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.filter-buttons button {
+    background-color: #576490;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    font-size: 14px;
+    width: 300px;
+    height: 50px;
+}
+
+.filter-buttons button:hover {
+    background-color: #7796CB;
+}
+
+
+
+.post {
+    padding: 2% 0% 2% 0%;
+
+}
+
+.inside-post {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    height: fit-content;
+}
+
+
+.inside-post img {
+    border-radius: 46px;
+    margin: 2% 5% 2% 0%;
+    max-width: 40%;
+    max-height: 30%;
+}
+
+body hr {
+    border: none;
+    border-top: 2px solid black;
+    width: auto;
+}
+
+/*******************************/
+/************ FOOTER ***********/
+/*******************************/
+footer {
+    background-color: #7796CB;
+    color: black;
+    font-family: 'Libre Franklin';
+    border-top: 1px solid #333533;
+}
+
+.inside-footer {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin: 2% 5% 0% 5%;
+}
+
+.social-links {
+    width: auto;
+    text-align: left;
+}
+
+.contact-links {
+    margin: 0% 0% 2% 0%;
+}
+
+.links {
+    display: flex;
+}
+
+.social-links a {
+    color: black;
+    margin: 0% 3% 0% 0%;
+}
+
+.social-links p {
+    font-size: 20px;
+    /* maybe */
+    font-weight: bold;
+}
+
+.footer-text {
+    display: flex;
+    margin: 1% 0% 1% 5%;
+    text-align: left;
+    float: left;
+    flex-direction: column;
+}
+
+.footer-text hr {
+    border: none;
+    border-top: 1px solid black;
+    width: 100%;
+}

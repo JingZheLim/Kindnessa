@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kindnessa</title>
+    <meta charset="UTF-8">
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <link rel="stylesheet" href="/user/stylesheets/profile.css">
+    <link rel="stylesheet" href="../headFoot.css">
+    <script src="../javascripts/web.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="../javascripts/profile.js" defer></script>
+
+    <script src="../javascripts/check_login.js" defer></script>
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/3b05a2b1b3.js" crossorigin="anonymous"></script>
+</head>
+
+<!--The header of the page-->
+
+<body >
+    <div class="header-container" id="app">
+        <div class="header">
+            <a class="logo-color" href="../"><i class="fa-solid fa-hand-holding-heart fa-2xl"></i> Kindnessa</a>
+            <a href="../general/about.html">About</a>
+            <a href="../general/organisation.html">Organisations</a>
+            <a href="../general/newfeeds.html">News Feed</a>
+            <a href="../general/event.html">Events</a>
+            <a href="../general/contact.html">Contact Us</a>
+            <!-- Add login icon -->
+            <a v-show="!logged_in" href="../general/login.html" class="login"><i class="fas fa-sign-in-alt"></i> Log
+                in</a>
+            <div v-show="logged_in" class="dropdown">
+                <button type="button" class="dropbtn"><i class="fa-solid fa-user"></i>
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="../user/profile.html">Profile</a>
+                    <a v-if="!check_admin" href="../user/joined_events.html">My Events</a>
+                    <a v-if="!check_admin" href="../user/joined_orgs.html">My Organisations</a>
+                    <a v-if="check_manager" href="../manager" class="manager-tools">Manager
+                        Tools</a>
+                    <a v-if="check_admin" href="../admin" class="manager-tools">Admin Tools</a>
+                    <a href="../general/logout.html" @click="logout()">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--The header-->
+    <div class="page-title">
+        <div class="inside-page">
+            <p>Profile</p>
+        </div>
+    </div>
+
+    <!--The main body-->
+    <div class="main-div">
+        <div class="side-bar"  id="app2"> <!-- Buttons (Left div)-->
+            <button onclick="location.href='/user/profile.html'" type="button" class="highlight">PROFILE</button>
+            <button v-if="!check_admin" onclick="location.href='/user/joined_orgs.html'" type="button">MY
+                ORGANISATION</button>
+            <button v-if="!check_admin" onclick="location.href='/user/joined_events.html'" type="button">MY
+                EVENTS</button>
+            <button v-if="check_manager" onclick="location.href='../manager'" type="button">MANAGER TOOLS</button>
+            <button v-if="check_admin" onclick="location.href='../admin'" type="button">ADMIN TOOLS</button>
+            <button onclick="location.href='/general/logout.html'" type="button">LOGOUT</button>
+        </div>
+
+        <div class="edit-profile-container" id="account-info">
+
+            <!--User's profile information-->
+            <div class="user-field"> <!-- Account Info (right div)-->
+                <p id="title">Account Information</p>
+
+                <div class="seperate"> <!--Need to make elements inline-->
+                    <div id="big-text">
+                        <p>ID: {{ userId }}</p>
+                    </div>
+
+                    <div class="button-container">
+                        <button type="button" @click="toggleEdit">{{ editMode ? 'Cancel' : 'Edit' }}</button>
+                    </div>
+                </div>
+
+                <!-- First Name -->
+                <div class="input-container">
+                    <label for="first-name">First Name</label>
+                    <input type="text" class="general-input-text" v-model="firstName" :disabled="!editMode">
+                </div>
+
+                <!-- Last Name -->
+                <div class="input-container">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" class="general-input-text" v-model="lastName" :disabled="!editMode">
+                </div>
+
+                <!-- Email -->
+                <div class="input-container">
+                    <label for="email">Email</label>
+                    <input type="text" class="general-input-text" v-model="email" :disabled="!editMode">
+                </div>
+            </div>
+
+            <!-- Current Password for security reason -->
+            <div class="passwords" id="password" v-show="showPasswordDiv">
+                <div class="space-box">
+                    <div class="input-container" id="current-pass-box">
+                        <label for="current-pass">Current Password</label>
+                        <input type="password" class="first-input-text" id="current-pass" v-model="currentPassword">
+                    </div>
+                </div>
+
+                <br>
+
+                <!-- Passwords -->
+                <div class="space-box">
+                    <div>
+                        <label for="new-pass">New Password</label>
+                        <input type="password" class="input-text" id="new-pass" v-model="newPassword">
+                    </div>
+
+                    <div>
+                        <label for="confirm-pass">Confirm Password</label>
+                        <input type="password" id="confirm-pass" class="input-text" v-model="confirmPassword">
+                    </div>
+                </div>
+
+                <br>
+                <br>
+                <br>
+
+
+                <div class="space-box">
+
+                    <!-- Delete Account and Save Changes Button -->
+                    <div class="button-container">
+                        <button type="button" @click="deleteAccount">Delete Account</button>
+                    </div>
+                    <div class="button-container" id="save-button" v-show="editMode">
+                        <button type="button" @click="saveChanges">Save Changes</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <br><br>
+
+            <!-- Email Notifications -->
+            <div class="email-notifications">
+                <div>
+                    <h2>Email Notifications</h2>
+                </div>
+                <div>
+                    <p>Emails will be sent to {{ email }} <a href="../user/settings.html">Edit</a></p>
+                </div>
+
+                <div> <!--checkboxes container (covers all the notifications)-->
+
+                    <div class="notification-types">
+                        <div class="notification-head">
+                            <p>Organisation</p>
+                            <p>Events</p>
+                            <p>Posts</p>
+                        </div>
+                        <div class="notification-row" v-for="org in organisations" :key="org.organisation_id">
+                            <p for="notif1">{{ org.name }}</p>
+                            <input type="checkbox" :checked="org.event_notifications"
+                                @change="updatePreference(org.organisation_id, 'event', $event.target.checked)">
+
+                            <input type="checkbox" :checked="org.post_notifications"
+                                @change="updatePreference(org.organisation_id, 'post', $event.target.checked)">
+                        </div>
+                    </div>
+
+                    <div class="notification-row">
+                        <label for="eventNotif1">BobbiBao</label>
+                        <div>
+                            <input type="checkbox" id="eventNotif1" checked>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="postNotif1">
+                        </div>
+                    </div>
+                    <div class="notification-row">
+                        <label for="eventNotif1">Cat Lovers</label>
+                        <div>
+                            <input type="checkbox" checked>
+                        </div>
+                        <div>
+                            <input type="checkbox" checked>
+                        </div>
+                    </div>
+
+                </div>
+                <br><br><br>
+
+            </div>
+        </div>
+
+    </div> <!--End of main body-->
+
+      <!--Footer-->
+      <footer>
+        <div class="inside-footer">
+            <div class="social-links">
+                <div class="links">
+                    <ul class="social-list">
+                        <li class="icons">
+                            <a href="https://www.facebook.com" class="facebook">
+                                <i class="fa-brands fa-square-facebook fa-2xl"></i>
+                            </a>
+                            <div class="tooltip">Facebook</div>
+                        </li>
+                        <li class="icons">
+                            <a href="https://www.twitter.com" class="twitter">
+                                <i class="fa-brands fa-square-x-twitter fa-2xl"></i>
+                            </a>
+                            <div class="tooltip">Twitter</div>
+                        </li>
+                        <li class="icons">
+                            <a href="https://www.instagram.com" class="instagram">
+                                <i class="fa-brands fa-square-instagram fa-2xl"></i>
+                            </a>
+                            <div class="tooltip">Instagram</div>
+                        </li>
+                        <li class="icons">
+                            <a href="https://youtube.com" class="youtube">
+                                <i class="fa-brands fa-youtube fa-2xl"></i>
+                            </a>
+                            <div class="tooltip">Youtube</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-text">
+                <div class="contact-links">
+                    <a href="../general/contact.html">Contact us</a>
+                    <a href="../general/about.html">About us</a>
+                </div>
+                <hr>
+                <div class="text">
+                    <p>Kindessa would like to acknowledge the Traditional Custodians of the many lands on which we
+                        live
+                        and
+                        work.<br>We would also like to pay respect to Elders past and present and extend that
+                        respect to
+                        all
+                        Aboriginal and Torres Strait Islander Peoples.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

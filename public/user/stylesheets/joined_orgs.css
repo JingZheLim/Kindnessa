@@ -1,0 +1,172 @@
+/*******************************/
+/********** PAGE TITLE *********/
+/*******************************/
+.page-title {
+    background-color: #7796CB;
+    /* Background color */
+    /* Padding inside the section */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: black;
+    font-size: 30px;
+    color: #FFFFFF;
+    font-size: 35px;
+}
+
+.inside-page {
+    margin: 1.5% 5% 1.5% 5%;
+}
+
+/*******************************/
+/*********** MAIN DIV **********/
+/*******************************/
+.main-div {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 0.75fr 2fr;
+
+}
+
+/*******************************/
+/********** L Side Bar *********/
+/*******************************/
+.side-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #D1D2F9;
+    margin-right: 5%;
+    padding: 5% 0% 2% 0%;
+}
+
+.side-bar button {
+    margin: 2% 0% 2% 0%;
+    background-color: #576490;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    font-size: 80%;
+    width: 70%;
+    max-height: 70px;
+    min-height: 70px;
+}
+
+.side-bar button:hover {
+    background-color: #7796CB;
+}
+
+.side-bar .highlight {
+    background-color: #7796CB;
+}
+
+/*******************************/
+/******** ORGANISATIONS ********/
+/*******************************/
+
+.upcoming-div {
+    margin: 2% 4% 2% 4%;
+}
+
+.events-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.event {
+    display: flex;
+    flex-direction: column;
+    margin: 10% 15% 15% 5%;
+    align-items: center;
+    background: #D1D2F9;
+    position: relative;
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+
+}
+
+.event img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 15px 15px 15px 15px;
+    aspect-ratio: 1;
+  }
+
+.below-image button {
+    margin: 2% 0% 2% 0%;
+    background-color: #576490;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    width: 150px;
+    height: 50px;
+    font-weight: bold;
+}
+
+.event-name {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+  }
+
+.below-image button:hover {
+    background-color: #7796CB;
+}
+
+/*******************************/
+/************ FOOTER ***********/
+/*******************************/
+footer {
+    background-color: #7796CB;
+    color: black;
+    font-family: 'Libre Franklin';
+    border-top: 1px solid #333533;
+}
+
+.inside-footer {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin: 2% 5% 0% 5%;
+}
+
+.social-links {
+    width: auto;
+    text-align: left;
+}
+
+.contact-links {
+    margin: 0% 0% 2% 0%;
+}
+
+.links {
+    display: flex;
+}
+
+.social-links a {
+    color: black;
+    margin: 0% 3% 0% 0%;
+}
+
+.social-links p {
+    font-size: 20px;
+    /* maybe */
+    font-weight: bold;
+}
+
+.footer-text {
+    display: flex;
+    margin: 1% 0% 1% 5%;
+    text-align: left;
+    float: left;
+    flex-direction: column;
+}
+
+.footer-text hr {
+    border: none;
+    border-top: 1px solid black;
+    width: 100%;
+}

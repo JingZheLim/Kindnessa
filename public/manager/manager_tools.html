@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kindnessa</title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../headFoot.css">
+    <link rel="stylesheet" href="../adminManager.css">
+    <link rel="stylesheet" href="/manager/stylesheets/manager_tools.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="../javascripts/manager_ajax.js"></script>
+    <script src="../javascripts/check_login.js" defer></script>
+    <script src="../javascripts/web.js" defer></script>
+    <script src="../javascripts/manager_section.js" defer></script>
+
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/3b05a2b1b3.js" crossorigin="anonymous"></script>
+</head>
+
+<!--The header of the page-->
+
+<body>
+    <div class="header-container" id="app">
+        <div class="header">
+            <a class="logo-color" href="../"><i class="fa-solid fa-hand-holding-heart fa-2xl"></i> Kindnessa</a>
+            <a href="../general/about.html">About</a>
+            <a href="../general/organisation.html">Organisations</a>
+            <a href="../general/newfeeds.html">News Feed</a>
+            <a href="../general/event.html">Events</a>
+            <a href="../general/contact.html">Contact Us</a>
+            <!-- Add login icon -->
+            <a v-show="!logged_in" href="../general/login.html" class="login"><i class="fas fa-sign-in-alt"></i> Log
+                in</a>
+            <div v-show="logged_in" class="dropdown">
+                <button type="button" class="dropbtn"><i class="fa-solid fa-user"></i>
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="../user/profile.html">Profile</a>
+                    <a v-if="!check_admin" href="../user/joined_events.html">My Events</a>
+                    <a v-if="!check_admin" href="../user/joined_orgs.html">My Organisations</a>
+                    <a v-if="check_manager" href="../manager" class="manager-tools">Manager
+                        Tools</a>
+                    <a v-if="check_admin" href="../admin" class="manager-tools">Admin Tools</a>
+                    <a href="../general/logout.html" @click="logout()">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--The header-->
+    <div class="page-title">
+        <div class="inside-page">
+            <p>Management Tools</p>
+        </div>
+    </div>
+
+    <!--The main body-->
+    <div class="main-div" id="manager-section">
+
+        <aside class="side-bar"> <!-- Buttons (Left div)-->
+            <button @click="buttonOrgs" v-bind:class="{'highlight': Orgs}" type="button">MANAGE ORGANISATIONS</button>
+            <button @click="buttonEvents" v-bind:class="{'highlight': Events}" type="button" id="default-button">MANAGE
+                EVENTS</button>
+            <button @click="buttonPosts" v-bind:class="{'highlight': Posts}" type="button">MANAGE POSTS</button>
+            <br>
+            <br>
+            <br>
+            <button onclick="location.href='create_event.html'" type="button">CREATE EVENT</button>
+            <button onclick="location.href='create_post.html'" type="button">CREATE POST</button>
+        </aside>
+
+        <main class="managing-section"> <!-- Account Info (right div)-->
+            <div class="my-orgs" v-show="Orgs">
+                <p class="title">My Organisations</p>
+
+                <!-- organisations list-->
+                <div class="right-field-container" id="org-list">
+                </div>
+            </div>
+
+            <div class="my-events" v-show="Events">
+                <div class="main-top">
+                    <p class="title">My Events</p>
+                    <button onclick="location.href='create_event.html'" class="create-button" type="button">Create
+                        Event</button>
+                </div>
+
+                <!-- Event list-->
+                <div class="right-field-container" id="event-list">
+                </div>
+            </div>
+
+            <div class="my-Posts" v-show="Posts">
+                <div class="main-top">
+                    <p class="title">My Posts</p>
+                    <button onclick="location.href='create_post.html'" class="create-button" type="button">Create
+                        Post</button>
+                </div>
+
+                <!-- Event list-->
+                <div class="right-field-container" id="post-list">
+
+                </div>
+            </div>
+        </main>
+
+    </div>
+
+    <!--Footer-->
+    <footer>
+        <div class="inside-footer">
+            <div class="social-links">
+                <div class="links">
+                    <ul class="social-list">
+                        <li class="icons">
+                            <a href="https://www.facebook.com" class="facebook">
+                                <i class="fa-brands fa-square-facebook fa-2xl"></i>
+                            </a>
+                            <div class="tooltip">Facebook</div>
+                        </li>
+                        <li class="icons">
+                            <a href="https://www.twitter.com" class="twitter">
+                                <i class="fa-brands fa-square-x-twitter fa-2xl"></i>
+                            </a>
+                            <div class="tooltip">Twitter</div>
+                        </li>
+                        <li class="icons">
+                            <a href="https://www.instagram.com" class="instagram">
+                                <i class="fa-brands fa-square-instagram fa-2xl"></i>
+                            </a>
+                            <div class="tooltip">Instagram</div>
+                        </li>
+                        <li class="icons">
+                            <a href="https://youtube.com" class="youtube">
+                                <i class="fa-brands fa-youtube fa-2xl"></i>
+                            </a>
+                            <div class="tooltip">Youtube</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-text">
+                <div class="contact-links">
+                    <a href="../general/contact.html">Contact us</a>
+                    <a href="../general/about.html">About us</a>
+                    <a href="../user/profile.html">Newsletter</a>
+                </div>
+                <hr>
+                <div class="text">
+                    <p>Kindessa would like to acknowledge the Traditional Custodians of the many lands on which we live
+                        and
+                        work.<br>We would also like to pay respect to Elders past and present and extend that respect to
+                        all
+                        Aboriginal and Torres Strait Islander Peoples.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>loadMyOrgs()</script>
+    <script>loadMyEvents()</script>
+    <script>loadMyPosts()</script>
+</body>
+
+</html>

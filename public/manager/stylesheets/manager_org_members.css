@@ -1,0 +1,11 @@
+/* purple boxes to show organisation names */
+#members-list .org-name-box {
+    display: grid;
+    grid-template-columns: 2fr 1fr ;
+}
+
+.org-button button.manager-button {
+    width: 70%;
+    /* Set specific width for the Set as Manager button */
+}
+

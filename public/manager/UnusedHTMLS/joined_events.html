@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kindnessa</title>
+    <meta charset="UTF-8">
+    <script src="javascripts/check_login.js" defer></script>
+    <link rel="stylesheet" href="../headFoot.css">
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <link rel="stylesheet" href="/user/stylesheets/joined_events.css">
+    <script src="../javascripts/web.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/3b05a2b1b3.js" crossorigin="anonymous"></script>
+</head>
+
+<!--The header of the page-->
+
+<body>
+    <div class="header-container" id="app">
+        <div class="header">
+            <a class="logo-color" href="../"><i class="fa-solid fa-hand-holding-heart fa-2xl"></i> Kindnessa</a>
+            <a href="../general/about.html">About</a>
+            <a href="../general/organisation.html">Organisations</a>
+            <a href="../general/newfeeds.html">News Feed</a>
+            <a href="../general/event.html">Events</a>
+            <a href="../general/contact.html">Contact Us</a>
+            <!-- Add login icon -->
+            <a v-show="!logged_in" href="../general/login.html" class="login"><i class="fas fa-sign-in-alt"></i> Log
+                in</a>
+            <div v-show="logged_in" class="dropdown">
+                <button type="button" class="dropbtn"><i class="fa-solid fa-user"></i>
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="../user/profile.html">Profile</a>
+                    <a href="../user/joined_events.html">My Events</a>
+                    <a href="../user/joined_orgs.html">My Organisations</a>
+                    <a v-if="check_manager" href="../manager/manage_organisations.html"
+                        class="manager-tools">Manager Tools</a>
+                    <a v-if="check_admin" href="../admin/admin.html" class="manager-tools">Admin Tools</a>
+                    <a href="../general/logout.html">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--The header-->
+    <div class="page-title">
+        <div class="inside-page">
+            <p>Joined Events</p>
+        </div>
+    </div>
+
+
+    <!--The main body-->
+    <div class="main-div">
+
+        <aside class="side-bar"> <!-- Buttons (Left div)-->
+            <button onclick="location.href='manager_profile.html'" type="button">PROFILE</button>
+            <button onclick="location.href='manager_settings.html'" type="button">ACCOUNT SETTINGS</button>
+            <button onclick="location.href='joined_orgs.html'" type="button">MY ORGANISATION</button>
+            <button onclick="location.href='joined_events.html'" type="button" id="default-button">MY EVENTS</button>
+            <button onclick="location.href='manage_organisations.html'" type="button">MANAGEMENT TOOLS</button>
+            <button onclick="location.href='/general/logout.html'" type="button">LOGOUT</button>
+        </aside>
+
+        <section class="all-events">
+            <div class="events-row2">
+                <!--Images that will be on the left-side of page-->
+                <div class="events"> <!--Seperate divs for each event-->
+                    <div class="event-image"> <!--Image-->
+                        <img src="../images/butters_resized.jpg" alt="Event Image">
+                    </div>
+
+                    <div class="below-image"> <!--Event name and buttons -->
+                        <p>Injured Paws</p>
+                        <button type="button">View</button>
+                        <button type="button">Leave</button>
+                    </div>
+                </div>
+
+
+                <!--Images that will be on the right-side of page-->
+                <div class="events"> <!--Seperate divs for each event-->
+                    <div class="event-image"> <!--Image 1033|1039 -->
+                        <img src="../images/ike.jpg" alt="Event Image">
+                    </div>
+
+                    <div class="below-image"> <!--Event name and buttons -->
+                        <p>Clothing Donation</p>
+                        <button type="button">View</button>
+                        <button type="button">Leave</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="events-row2">
+                <!--Images that will be on the left-side of page-->
+                <div class="events"> <!--Seperate divs for each event-->
+                    <div class="event-image"> <!--Image-->
+                        <img src="../images/butters_resized.jpg" alt="Event Image">
+                    </div>
+
+                    <div class="below-image"> <!--Event name and buttons -->
+                        <p>Injured Paws</p>
+                        <button type="button">View</button>
+                        <button type="button">Leave</button>
+                    </div>
+                </div>
+
+
+                <!--Images that will be on the right-side of page-->
+                <div class="events"> <!--Seperate divs for each event-->
+                    <div class="event-image"> <!--Image-->
+                        <img src="../images/ike.jpg" alt="Event Image">
+                    </div>
+
+                    <div class="below-image"> <!--Event name and buttons -->
+                        <p>Clothing Donation</p>
+                        <button type="button">View</button>
+                        <button type="button">Leave</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div> <!--End of the main body-->
+
+    <!--Footer-->
+    <footer>
+        <div class="inside-footer">
+            <div class="social-links">
+                <div class="logo">
+                    <p><i class="fa-solid fa-hand-holding-heart fa-2xl"></i>Kindnessa </p>
+                </div>
+                <div class="links"><a href="https://www.facebook.com"><i
+                            class="fa-brands fa-square-facebook fa-2xl"></i></a>
+                    <a href="https://www.twitter.com"><i class="fa-brands fa-square-x-twitter fa-2xl"></i></a>
+                    <a href="https://www.instagram.com"><i class="fa-brands fa-square-instagram fa-2xl"></i></a>
+                    <a href="https://youtube.com"><i class="fa-brands fa-youtube fa-2xl"></i></a>
+                </div>
+
+            </div>
+
+            <div class="footer-text">
+                <div class="contact-links">
+                    <a href="https://www.youtube.com/">Contact us</a> |
+                    <a href="https://github.com/">About us</a> |
+                    <a href="https://www.w3schools.com/html/html_links.asp">Newsletter</a>
+                </div>
+                <hr>
+                <div class="text">
+                    <p>Kindessa would like to acknowledge the Traditional Custodians of the many lands on which we live
+                        and
+                        work.<br>We would also like to pay respect to Elders past and present and extend that respect to
+                        all
+                        Aboriginal and Torres Strait Islander Peoples.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

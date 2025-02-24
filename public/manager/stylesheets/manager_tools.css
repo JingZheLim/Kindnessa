@@ -1,0 +1,114 @@
+/*******************************/
+/******* ALL ORGANISATION ******/
+/*******************************/
+
+.org-name-box {
+    width: 100%;
+    margin-bottom: 1px;
+    background-color: #D1D2F9;
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    justify-items: center;
+}
+
+
+.org-name-top {
+    background-color: #C9CAD9;
+}
+
+.org-button button {
+    background-color: #576490;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+    font-size: 12px;
+    width: 70px;
+    height: 30px;
+    margin: 10px 0px 10px 0px;
+}
+
+.org-button button:hover {
+    background-color: #7796CB;
+}
+
+/*******************************/
+/********** ALL POSTS **********/
+/*******************************/
+.main-top {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.create-button {
+    background-color: #576490;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#create-event-button:hover {
+    background-color: #7796CB;
+}
+
+/* purple boxes to show organisation names */
+.posts-container {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    margin-bottom: 2%;
+    padding: 10px;
+    background-color: #D1D2F9;
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+    display: grid;
+    border-radius: 15px;
+}
+
+/* .posts-container-content {} */
+
+.event-box {
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    font-size: 30px;
+}
+
+.event-box-2 {
+    margin-left: 2%;
+    margin-top: -2%;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.808);
+}
+
+.posts-container .button-container button {
+    background-color: #576490;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 15px;
+    width: 90px;
+}
+
+
+
+.posts-container .button-container {
+    position: absolute;
+    top: 20px;
+    right: 3%;
+    display: flex;
+    gap: 10px;
+}

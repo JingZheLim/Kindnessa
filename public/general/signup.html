@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign up - Kindnessa</title>
+  <link rel="stylesheet" href="../stylesheets/signup.css">
+  <script src="../javascripts/signup.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="links">
+      <a href="index.html" class="back-link">Back to main page</a>
+      <a href="index.html" class="logo back-link">Kindnessa</a>
+    </div>
+    <h1>Sign Up</h1>
+
+    <div id="error-message" class="error-message">*Error Message here*</div>
+
+    <form id="signup-form" class="form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Please enter your email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Please enter your password" required>
+      </div>
+      <div class="form-group">
+        <label for="confirm-pass">Confirm Password</label>
+        <input type="password" id="confirm-pass" placeholder="Please confirm your password" required>
+      </div>
+
+      <div class="form-group">
+        <label for="first-name">First Name</label>
+        <input type="text" id="first-name" placeholder="Please enter your first name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="last-name">Last Name</label>
+        <input type="text" id="last-name" placeholder="Please enter your last name" required>
+      </div>
+
+      <button type="submit" class="btn-primary">Sign Up</button>
+    </form>
+
+    <div class="links">
+      <a href="login.html">Already have an account? Log in here!</a>
+    </div>
+  </div>
+
+</body>
+
+</html>

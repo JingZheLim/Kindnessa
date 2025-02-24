@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kindnessa</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../headFoot.css">
+    <link rel="stylesheet" href="../general/stylesheets/events_indiv.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="../javascripts/check_login.js" defer></script>
+    <script src="../javascripts/logout.js" defer></script>
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <script src="../javascripts/web.js"></script>
+
+
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/3b05a2b1b3.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="header-container" id="app2">
+        <div class="header">
+            <a class="logo-color" href="../"><i class="fa-solid fa-hand-holding-heart fa-2xl"></i> Kindnessa</a>
+            <a href="../general/about.html">About</a>
+            <a href="../general/organisation.html">Organisations</a>
+            <a href="../general/newfeeds.html">News Feed</a>
+            <a href="../general/event.html">Events</a>
+            <a href="../general/contact.html">Contact Us</a>
+            <!-- Add login icon -->
+            <a v-show="!logged_in" href="../general/login.html" class="login"><i class="fas fa-sign-in-alt"></i> Log
+                in</a>
+            <div v-show="logged_in" class="dropdown">
+                <button type="button" class="dropbtn"><i class="fa-solid fa-user"></i>
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="../user/profile.html">Profile</a>
+                    <a v-if="!check_admin" href="../user/joined_events.html">My Events</a>
+                    <a v-if="!check_admin" href="../user/joined_orgs.html">My Organisations</a>
+                    <a v-if="check_manager" href="../manager" class="manager-tools">Manager
+                        Tools</a>
+                    <a v-if="check_admin" href="../admin" class="manager-tools">Admin Tools</a>
+                    <a href="../general/logout.html" @click="logout()">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="app">
+        <!-- Assuming data properties and methods are correctly set up -->
+        <!-- Example of rendering event details -->
+        <div class="main-div">
+            <div class="inner-main">
+                <img :src="eventDetails.image" alt="Event Image">
+                <div class="info-div">
+                    <div>
+                        <button v-show="!isJoined" type="button" id="edit-button" @click="join_event()"
+                            :disabled="isJoined">Join Event</button>
+                        <button v-show="isJoined" type="button" id="edit-button-1" :disabled="isJoined">Joined</button>
+                    </div>
+                    <h3>Event Name:</h3>
+                    <p>{{ eventDetails.event_name }}</p>
+                    <h3>Date:</h3>
+                    <p>{{ eventDetails.date }}</p>
+                    <h3>Time:</h3>
+                    <p>{{ eventDetails.time }}</p>
+                    <h3>Location:</h3>
+                    <p>{{ eventDetails.location }}</p>
+                    <h3>Hosted By:</h3>
+                    <p>{{ event_host.organisation_name }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-description">
+            <div class="description-text">
+                <h2>Event Overview</h2>
+                <p>{{ eventDetails.description }}</p>
+            </div>
+        </div>
+
+
+
+        <!--Footer-->
+        <footer>
+            <div class="inside-footer">
+                <div class="social-links">
+                    <div class="links">
+                        <ul class="social-list">
+                            <li class="icons">
+                                <a href="https://www.facebook.com" class="facebook">
+                                    <i class="fa-brands fa-square-facebook fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Facebook</div>
+                            </li>
+                            <li class="icons">
+                                <a href="https://www.twitter.com" class="twitter">
+                                    <i class="fa-brands fa-square-x-twitter fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Twitter</div>
+                            </li>
+                            <li class="icons">
+                                <a href="https://www.instagram.com" class="instagram">
+                                    <i class="fa-brands fa-square-instagram fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Instagram</div>
+                            </li>
+                            <li class="icons">
+                                <a href="https://youtube.com" class="youtube">
+                                    <i class="fa-brands fa-youtube fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Youtube</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-text">
+                    <div class="contact-links">
+                        <a href="../general/contact.html">Contact us</a>
+                        <a href="../general/about.html">About us</a>
+                    </div>
+                    <hr>
+                    <div class="text">
+                        <p>Kindessa would like to acknowledge the Traditional Custodians of the many lands on which we
+                            live
+                            and
+                            work.<br>We would also like to pay respect to Elders past and present and extend that
+                            respect to
+                            all
+                            Aboriginal and Torres Strait Islander Peoples.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                logged_in: false,
+                check_manager: false,
+                eventDetails: null,
+                event_host: null,
+                eventId: null,
+                isJoined: null,
+            },
+            created() {
+                this.check_login();
+                this.eventId = this.getEventIdFromUrl();
+                if (this.eventId) {
+                    this.loadEventDetails();
+                    this.load_even_name();
+                    this.checkEventStatus();
+                }
+            },
+            methods: {
+                getEventIdFromUrl() {
+                    const urlParams = new URLSearchParams(window.location.search);
+                    return urlParams.get('event_id');
+                },
+                loadEventDetails() {
+                    fetch(`/api/event-details?event_id=${this.eventId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            this.eventDetails = data;
+                        })
+                        .catch(error => {
+                            console.error('Error fetching event details:', error);
+                        });
+                },
+                load_even_name() {
+                    fetch(`/api/event-name?event_id=${this.eventId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            this.event_host = data;
+                        })
+                        .catch(error => {
+                            console.error('Error fetching event details:', error);
+                        });
+                },
+                check_login() {
+                    fetch('/check-login')
+                        .then(response => response.json())
+                        .then(data => {
+                            this.logged_in = true;
+                            this.check_manager = data.role_id === 'manager';
+                        })
+                        .catch(() => {
+                            this.logged_in = false;
+                            this.check_manager = false;
+                        });
+                },
+
+                join_event() {
+                    const event_id = this.eventId;
+
+                    fetch(`/api/join-event?event_id=${event_id}`, {
+                        method: 'POST',
+                        // credentials: 'same-origin'
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                alert('Joined successfully');
+                                // Update UI to reflect that user has joined
+                                this.isJoined = true;
+                            } else {
+                                console.error('Failed to join event:', response.statusText);
+                                alert('Please login to register for this event');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error joining event:', error);
+                            // Handle network errors or other exceptions
+                        });
+                },
+
+                checkEventStatus() {
+
+                    const event_id = this.eventId;
+
+                    fetch(`/api/check-event-status?event_id=${event_id}`)
+                        .then(response => {
+                            if (response.ok) {
+                                return response.json();
+                            } else {
+                                throw new Error('Failed to fetch event status');
+                            }
+                        })
+                        .then(data => {
+                            this.isJoined = data.joined; // Adjust based on server response
+                        })
+                        .catch(error => {
+                            console.error('Error checking organisation status:', error);
+                            // Handle error scenarios
+                        });
+                },
+            }
+        });
+    </script>
+</body>
+
+</html>

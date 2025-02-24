@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kindnessa</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../stylesheets/event.css">
+    <link rel="stylesheet" href="../headFoot.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="../javascripts/check_login.js" defer></script>
+    <script src="../javascripts/logout.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/3b05a2b1b3.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <div class="header-container" id="app2">
+        <div class="header">
+            <a class="logo-color" href="../"><i class="fa-solid fa-hand-holding-heart fa-2xl"></i> Kindnessa</a>
+            <a href="../general/about.html">About</a>
+            <a href="../general/organisation.html">Organisations</a>
+            <a href="../general/newfeeds.html">News Feed</a>
+            <a href="../general/event.html">Events</a>
+            <a href="../general/contact.html">Contact Us</a>
+            <!-- Add login icon -->
+            <a v-show="!logged_in" href="../general/login.html" class="login"><i class="fas fa-sign-in-alt"></i> Log
+                in</a>
+            <div v-show="logged_in" class="dropdown">
+                <button type="button" class="dropbtn"><i class="fa-solid fa-user"></i>
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="../user/profile.html">Profile</a>
+                    <a v-if="!check_admin" href="../user/joined_events.html">My Events</a>
+                    <a v-if="!check_admin" href="../user/joined_orgs.html">My Organisations</a>
+                    <a v-if="check_manager" href="../manager" class="manager-tools">Manager
+                        Tools</a>
+                    <a v-if="check_admin" href="../admin" class="manager-tools">Admin Tools</a>
+                    <a href="../general/logout.html" @click="logout()">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="events">
+        <!--First Header-->
+        <div class="page-title">
+            <div class="inside-page">
+                <p>Upcoming Events</p>
+            </div>
+        </div>
+
+        <!--Upcoming Events-->
+        <div class="upcoming-div">
+            <div class="events-row">
+                <div class="event" v-for="event in upcomingEvents" :key="event.event_id"
+                    :data-description="event.description" @click="redirectToEvent(event.event_id)">
+                    <div class="event-image">
+                        <img :src="event.image" alt="Event Image">
+                    </div>
+                    <div class="event-name">
+                        <p>{{ event.event_name }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Second header-->
+        <div class="page-title">
+            <div class="inside-page">
+                <p>All Events</p>
+            </div>
+        </div>
+
+        <!--All Events-->
+        <div class="all-div">
+            <div class="events-row">
+                <div class="event" v-for="event in allEvents" :key="event.event_id"
+                    :data-description="event.description" @click="redirectToEvent(event.event_id)">
+                    <div class="event-image">
+                        <img :src="event.image" alt="Event Image">
+                    </div>
+                    <div class="event-name">
+                        <p>{{ event.event_name }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Footer-->
+        <footer>
+            <div class="inside-footer">
+                <div class="social-links">
+                    <div class="links">
+                        <ul class="social-list">
+                            <li class="icons">
+                                <a href="https://www.facebook.com" class="facebook">
+                                    <i class="fa-brands fa-square-facebook fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Facebook</div>
+                            </li>
+                            <li class="icons">
+                                <a href="https://www.twitter.com" class="twitter">
+                                    <i class="fa-brands fa-square-x-twitter fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Twitter</div>
+                            </li>
+                            <li class="icons">
+                                <a href="https://www.instagram.com" class="instagram">
+                                    <i class="fa-brands fa-square-instagram fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Instagram</div>
+                            </li>
+                            <li class="icons">
+                                <a href="https://youtube.com" class="youtube">
+                                    <i class="fa-brands fa-youtube fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Youtube</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-text">
+                    <div class="contact-links">
+                        <a href="../general/contact.html">Contact us</a>
+                        <a href="../general/about.html">About us</a>
+                    </div>
+                    <hr>
+                    <div class="text">
+                        <p>Kindessa would like to acknowledge the Traditional Custodians of the many lands on which we
+                            live
+                            and
+                            work.<br>We would also like to pay respect to Elders past and present and extend that
+                            respect to
+                            all
+                            Aboriginal and Torres Strait Islander Peoples.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        new Vue({
+            el: '#events',
+            data: {
+                logged_in: false,
+                check_manager: false,
+                upcomingEvents: [],
+                allEvents: [],
+                userId: null // Assuming you will populate this from your authentication logic
+            },
+            created() {
+                this.check_login();
+                this.loadUpcomingEvents();
+                this.loadAllEvents();
+            },
+            methods: {
+                loadAllEvents() {
+                    fetch('/load-events')
+                        .then(response => response.json())
+                        .then(data => {
+                            this.allEvents = data;
+                        })
+                        .catch(error => {
+                            console.error('Error loading events:', error);
+                        });
+                },
+                check_login() {
+                    fetch('/check-login')
+                        .then(response => response.json())
+                        .then(data => {
+                            this.logged_in = true;
+                            this.check_manager = data.role_id === 'manager';
+                            this.userId = data.user_id; // Capture user ID after login check
+                            this.loadUpcomingEvents(); // Load upcoming events after user ID is set
+                            this.loadAllEvents(); // Load upcoming events after user ID is set
+                        })
+                        .catch(() => {
+                            this.logged_in = false;
+                            this.check_manager = false;
+                        });
+                },
+                loadUpcomingEvents() {
+                    if (!this.userId) {
+                        console.error('User not logged in');
+                        return;
+                    }
+
+                    fetch(`/api/upcoming-events?user_id=${this.userId}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.length) {
+                                this.upcomingEvents = data;
+                            } else {
+                                console.error('No upcoming events found');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching events:', error);
+                        });
+                },
+                logout() {
+                    fetch('/logout')
+                        .then(() => {
+                            this.logged_in = false;
+                            window.location.href = '../index.html';
+                        });
+                },
+                redirectToEvent(eventId) {
+                    window.location.href = `event_individual.html?event_id=${eventId}`;
+                },
+            }
+        });
+    </script>
+</body>
+
+</html>

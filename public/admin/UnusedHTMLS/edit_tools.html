@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kindnessa</title>
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <link rel="stylesheet" href="../headFoot.css">
+    <link rel="stylesheet" href="../adminManager.css">
+    <link rel="stylesheet" href="../admin/stylesheets/edit_tools.css">
+    <script src="../javascripts/web.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/3b05a2b1b3.js" crossorigin="anonymous"></script>
+</head>
+
+<!--The header of the page-->
+
+<body>
+    <div class="header">
+        <header>
+            <nav>
+                <ul>
+                    <li><a class="logo_color" href="../general/index.html"><i
+                                class="fa-solid fa-hand-holding-heart fa-2xl"></i>Kindnessa</a></li>
+                    <li><a href="../general/about.html">About</a></li>
+                    <li><a href="../general/organisation.html">Organisations</a></li>
+                    <li><a href="../general/newfeeds.html">News Feed</a></li>
+                    <li><a href="../general/event.html">Event</a></li>
+                    <li><a href="../general/contact.html">Contact Us</a></li>
+                    <!-- Add login icon -->
+                    <li><a href="../general/login.html"><i class="fas fa-sign-in-alt"></i> Log in</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <!--Breadcrumbs-->
+    <div class="bread-crumbs">
+        <div class="inside-bread">
+            <a href="../index.html">Home</a> &gt;
+            <a href="/admin/admin_profile.html">Profile</a> &gt;
+            <a href="/admin/manage_orgs.html">Management Tools</a> &gt;
+            <span>Edit Organisation</span>
+        </div>
+    </div>
+
+    <!--The header-->
+    <div class="page-title">
+        <div class="inside-page">
+            <p>Management Tools</p>
+        </div>
+    </div>
+
+    <!--The main body-->
+    <div class="main-div" id="">
+
+        <aside class="side-bar"> <!-- Buttons (Left div)-->
+            <button onclick="location.href='manage_orgs.html'" type="button" id="default-button">MANAGE
+                ORGANISATIONS</button>
+            <button onclick="location.href='manage_events.html'" type="button">MANAGE EVENTS</button>
+            <button onclick="location.href='manage_posts.html'" type="button">MANAGE POSTS</button>
+            <button onclick="location.href='manage_users.html'" type="button">MANAGE USERS</button>
+            <button onclick="location.href='create_org.html'" type="button">CREATE ORGANISATION</button>
+        </aside>
+
+        <main class="managing-section">
+            <div class="edit-org" v-show="">
+                <div class="Middle-field"> <!-- Edit -->
+                    <p class="title">Edit Organisation</p>
+                    <br>
+                    <form>
+                        <div class="form-group">
+                            <label for="org_name">Organisation Name</label>
+                            <input type="text" id="org_name" placeholder="Please enter your organisation name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="parent_textarea">
+                                <label for="org_description">Organisation Description</label>
+                                <textarea type="text" id="org_description" class="custom-textarea"
+                                    required>Please enter your organisation description</textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="Right-field">
+                    <div class="preview-area">
+                        <img id="preview-image" src="../images/blank_avatar.png" alt="Preview">
+                    </div>
+
+                    <div class="org-button">
+                        <div class="button_container">
+                            <button type="button">Add Picture</button>
+                            <button type="button">Delete Picture</button>
+
+                            <div class="picture-dropzone" id="picture-dropzone">
+                                <p>Click or Drag File Here to Add Picture</p>
+                            </div>
+
+                            <button type="button">Next</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="edit-event">
+                <div class="Middle-field">
+                    <div class="user-field">
+                        <p class="title">Edit Event</p>
+
+                        <div class="input-container">
+                            <label for="Title">Title</label>
+                            <input type="text" id="Title" class="input-text">
+                        </div>
+
+                        <div class="input-container">
+                            <label for="Date">Date</label>
+                            <input type="text" id="Date" class="input-text">
+                        </div>
+
+
+                        <div class="input-container">
+                            <label for="Location">Location</label>
+                            <input type="text" id="Location" class="input-text">
+                        </div>
+
+                        <div class="input-container">
+                            <label>Image</label>
+                            <input type="file" id="Image" class="input-file" accept="image/*"
+                                onchange="previewImage(event)">
+                            <div class="button-container_2">
+                                <button type="button"
+                                    onclick="document.getElementById('Image').click();">Browse</button>
+                            </div>
+                            <span id="preview-text">None selected</span>
+                            <img id="preview" src="#" alt="Preview" style="max-width: 100%; display: none;">
+                        </div>
+
+                        <div class="input-container">
+                            <label for="Location">Overview</label>
+                            <input type="text" id="overview" class="input-text">
+                        </div>
+
+                        <div class="input-container">
+                            <label for="Location">Event Details</label>
+                            <input type="text" id="event_detail" class="input-text">
+                        </div>
+
+                        <div class="input-container">
+                            <label for="host">Host</label>
+                            <input type="text" id="host" class="input-text">
+                        </div>
+
+                        <br>
+
+                        <div class="button-container">
+                            <button type="button">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="edit-users">
+            <div class="Middle-field">
+                <div class="user-field">
+                    <p id="title">Edit Post</p>
+
+                    <div class="input-container">
+                        <label for="Title">Title</label>
+                        <input type="text" id="Title" class="input-text">
+                    </div>
+
+                    <div class="input-container">
+                        <label>Image</label>
+                        <input type="file" id="Image" class="input-file" accept="image/*"
+                            onchange="previewImage(event)">
+                        <div class="button-container_2">
+                            <button type="button" onclick="document.getElementById('Image').click();">Browse</button>
+                        </div>
+                        <span id="preview-text">No file selected</span>
+                        <img id="preview" src="#" alt="Preview" style="max-width: 100%; display: none;">
+                    </div>
+
+                    <div class="input-container">
+                        <label for="Location">Description</label>
+                        <form>
+                            <div class="form-group">
+                                <div class="parent_textarea">
+                                    <label for="post_description"></label>
+                                    <textarea type="text" id="post_description" class="custom-textarea"
+                                        required>Please enter your post description</textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="input-container">
+                        <div class="button-container">
+                            <button type="button" id="public-btn" onclick="selectVisibility('Public')">Public</button>
+                            <!-- pasing 'Public' as parameter -->
+                            <button type="button" id="private-btn"
+                                onclick="selectVisibility('Private')">Private</button>
+                            <!-- pasing 'Private' as parameter -->
+                            <button type="button" id="save_btn">Post</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </main>
+    </div>
+
+
+
+
+    <!--Footer-->
+    <footer>
+        <div class="inside-footer">
+            <div class="social-links">
+                <div class="logo">
+                    <p><i class="fa-solid fa-hand-holding-heart fa-2xl"></i>Kindnessa </p>
+                </div>
+                <div class="links"><a href="https://www.facebook.com"><i
+                            class="fa-brands fa-square-facebook fa-2xl"></i></a>
+                    <a href="https://www.twitter.com"><i class="fa-brands fa-square-x-twitter fa-2xl"></i></a>
+                    <a href="https://www.instagram.com"><i class="fa-brands fa-square-instagram fa-2xl"></i></a>
+                    <a href="https://youtube.com"><i class="fa-brands fa-youtube fa-2xl"></i></a>
+                </div>
+
+            </div>
+
+            <div class="footer-text">
+                <div class="contact-links">
+                    <a href="https://www.youtube.com/">Contact us</a> |
+                    <a href="https://github.com/">About us</a> |
+                    <a href="https://www.w3schools.com/html/html_links.asp">Newsletter</a>
+                </div>
+                <hr>
+                <div class="text">
+                    <p>Kindessa would like to acknowledge the Traditional Custodians of the many lands on which
+                        we
+                        live
+                        and
+                        work.<br>We would also like to pay respect to Elders past and present and extend that
+                        respect to
+                        all
+                        Aboriginal and Torres Strait Islander Peoples.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

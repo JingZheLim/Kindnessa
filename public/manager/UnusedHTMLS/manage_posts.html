@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kindnessa</title>
+    <meta charset="UTF-8">
+    <script src="javascripts/check_login.js" defer></script>
+    <link rel="stylesheet" href="../headFoot.css">
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <link rel="stylesheet" href="/manager/stylesheets/manage_posts.css">
+    <script src="../javascripts/web.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/3b05a2b1b3.js" crossorigin="anonymous"></script>
+</head>
+
+<!--The header of the page-->
+
+<body>
+    <div class="header-container" id="app">
+        <div class="header">
+            <a class="logo-color" href="../"><i class="fa-solid fa-hand-holding-heart fa-2xl"></i> Kindnessa</a>
+            <a href="../general/about.html">About</a>
+            <a href="../general/organisation.html">Organisations</a>
+            <a href="../general/newfeeds.html">News Feed</a>
+            <a href="../general/event.html">Events</a>
+            <a href="../general/contact.html">Contact Us</a>
+            <!-- Add login icon -->
+            <a v-show="!logged_in" href="../general/login.html" class="login"><i class="fas fa-sign-in-alt"></i> Log
+                in</a>
+            <div v-show="logged_in" class="dropdown">
+                <button type="button" class="dropbtn"><i class="fa-solid fa-user"></i>
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="../user/profile.html">Profile</a>
+                    <a href="../user/joined_events.html">My Events</a>
+                    <a href="../user/joined_orgs.html">My Organisations</a>
+                    <a v-if="check_manager" href="../manager/manage_organisations.html"
+                        class="manager-tools">Manager Tools</a>
+                    <a v-if="check_admin" href="../admin/admin.html" class="manager-tools">Admin Tools</a>
+                    <a href="../general/logout.html">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Breadcrumbs-->
+    <div class="bread-crumbs">
+        <div class="inside-bread">
+            <a href="../index.html">Home</a> &gt;
+            <a href="/manager/manager_profile.html">Profile</a> &gt; <!--Add link for profile page-->
+            <a href="/manager/manage_organisations.html">Management Tools</a> &gt;
+            <span>Manage Posts</span>
+        </div>
+    </div>
+
+    <!--The header-->
+    <div class="page-title">
+        <div class="inside-page">
+            <p>Management Tools</p>
+        </div>
+    </div>
+
+    <!--The main body-->
+    <div class="main-div">
+
+        <aside class="side-bar"> <!-- Buttons (Left div)-->
+            <button onclick="location.href='manage_organisations.html'" type="button">MANAGE ORGANISATIONS</button>
+            <button onclick="location.href='manage_events.html'" type="button">MANAGE EVENTS</button>
+            <button onclick="location.href='manage_posts.html'" type="button" id="default-button">MANAGE POSTS</button>
+            <br>
+            <br>
+            <br>
+            <button onclick="location.href='create_event.html'" type="button">CREATE EVENT</button>
+            <button onclick="location.href='create_post.html'" type="button">CREATE POST</button>
+        </aside>
+
+        <div class="main-right-field"> <!-- Account Info (right div)-->
+
+            <div class="main-top">
+                <p id="title">My Posts</p>
+                <button onclick="location.href='create_post.html'" id="create-post-button" type="button">Create
+                    Post</button>
+            </div>
+
+            <!-- Event list-->
+            <div class="right-field-container">
+                <div class="posts-container org-button posts-container-content">
+                    <p class="event-box">Post A</p>
+                    <p class="event-box-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor <br>
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        <br>
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                        <br>
+                    </p>
+                    <div class="button-container">
+                        <button onclick="location.href='edit_post.html'" type="button">Edit</button>
+                        <button type="button">Delete</button>
+                    </div>
+                </div>
+
+                <div class="posts-container org-button posts-container-content">
+                    <p class="event-box">Post B</p>
+                    <p class="event-box-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor <br>
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        <br>
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                        <br>
+                    </p>
+                    <div class="button-container">
+                        <button onclick="location.href='edit_post.html'" type="button">Edit</button>
+                        <button type="button">Delete</button>
+                    </div>
+                </div>
+
+                <div class="posts-container org-button posts-container-content">
+                    <p class="event-box">Post C</p>
+                    <p class="event-box-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor <br>
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        <br>
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                        <br>
+                    </p>
+                    <div class="button-container">
+                        <button onclick="location.href='edit_post.html'" type="button">Edit</button>
+                        <button type="button">Delete</button>
+                    </div>
+                </div>
+
+                <div class="posts-container org-button posts-container-content">
+                    <p class="event-box">Post D</p>
+                    <p class="event-box-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor <br>
+                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                        <br>
+                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+                        <br>
+                    </p>
+                    <div class="button-container">
+                        <button onclick="location.href='edit_post.html'" type="button">Edit</button>
+                        <button type="button">Delete</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--Footer-->
+    <footer>
+        <div class="inside-footer">
+            <div class="social-links">
+                <div class="logo">
+                    <p><i class="fa-solid fa-hand-holding-heart fa-2xl"></i>Kindnessa </p>
+                </div>
+                <div class="links"><a href="https://www.facebook.com"><i
+                            class="fa-brands fa-square-facebook fa-2xl"></i></a>
+                    <a href="https://www.twitter.com"><i class="fa-brands fa-square-x-twitter fa-2xl"></i></a>
+                    <a href="https://www.instagram.com"><i class="fa-brands fa-square-instagram fa-2xl"></i></a>
+                    <a href="https://youtube.com"><i class="fa-brands fa-youtube fa-2xl"></i></a>
+                </div>
+
+            </div>
+
+            <div class="footer-text">
+                <div class="contact-links">
+                    <a href="https://www.youtube.com/">Contact us</a> |
+                    <a href="https://github.com/">About us</a> |
+                    <a href="https://www.w3schools.com/html/html_links.asp">Newsletter</a>
+                </div>
+                <hr>
+                <div class="text">
+                    <p>Kindessa would like to acknowledge the Traditional Custodians of the many lands on which we live
+                        and
+                        work.<br>We would also like to pay respect to Elders past and present and extend that respect to
+                        all
+                        Aboriginal and Torres Strait Islander Peoples.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kindnessa</title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../headFoot.css">
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <link rel="stylesheet" href="/user/stylesheets/joined_events.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="../javascripts/logout.js" defer></script>
+
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/3b05a2b1b3.js" crossorigin="anonymous"></script>
+</head>
+
+<!--The header of the page-->
+
+<body>
+    <div id="joined-events">
+        <div class="header-container">
+            <div class="header">
+                <a class="logo-color" href="../"><i class="fa-solid fa-hand-holding-heart fa-2xl"></i> Kindnessa</a>
+                <a href="../general/about.html">About</a>
+                <a href="../general/organisation.html">Organisations</a>
+                <a href="../general/newfeeds.html">News Feed</a>
+                <a href="../general/event.html">Events</a>
+                <a href="../general/contact.html">Contact Us</a>
+                <!-- Add login icon -->
+                <a v-show="!logged_in" href="../general/login.html" class="login"><i class="fas fa-sign-in-alt"></i> Log
+                    in</a>
+                <div v-show="logged_in" class="dropdown">
+                    <button type="button" class="dropbtn"><i class="fa-solid fa-user"></i>
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="../user/profile.html">Profile</a>
+                        <a href="../user/joined_events.html">My Events</a>
+                        <a href="../user/joined_orgs.html">My Organisations</a>
+                        <a v-if="check_manager" href="../manager/"
+                            class="manager-tools">Manager
+                            Tools</a>
+                        <a v-if="check_admin" href="../admin/admin.html" class="manager-tools">Admin Tools</a>
+                        <a href="../general/logout.html" @click="logout()">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--The header-->
+        <div class="page-title">
+            <div class="inside-page">
+                <p>Joined Events</p>
+            </div>
+        </div>
+        <!--The main body-->
+        <div class="main-div">
+
+            <div class="side-bar" id="app2"> <!-- Buttons (Left div)-->
+                <button onclick="location.href='/user/profile.html'" type="button">PROFILE</button>
+                <button v-if="!check_admin" onclick="location.href='/user/joined_orgs.html'"
+                    type="button">MY
+                    ORGANISATION</button>
+                <button v-if="!check_admin" onclick="location.href='/user/joined_events.html'" type="button" class="highlight">MY
+                    EVENTS</button>
+                <button v-if="check_manager" onclick="location.href='../manager'" type="button">MANAGER TOOLS</button>
+                <button v-if="check_admin" onclick="location.href='../admin'" type="button">ADMIN TOOLS</button>
+                <button onclick="location.href='/general/logout.html'" @click="logout()" type="button">LOGOUT</button>
+            </div>
+
+
+            <div class="upcoming-div">
+                <div class="events-row">
+
+                    <!--Event 1-->
+                    <div v-for="event in events" :key="event.event_id" class="event">
+                        <img :src="event.image" :alt="event.event_name">
+                        <div class="event-name">
+                            <p>{{ event.event_name }}</p>
+                        </div>
+                        <div class="below-image">
+                            <button @click="viewEvents(event.event_id)" type="button">View</button>
+                            <button @click="leaveEvent(event.event_id)" type="button">Leave</button>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!--End of the main body-->
+
+        <!--Footer-->
+        <footer>
+            <div class="inside-footer">
+                <div class="social-links">
+                    <div class="links">
+                        <ul class="social-list">
+                            <li class="icons">
+                                <a href="https://www.facebook.com" class="facebook">
+                                    <i class="fa-brands fa-square-facebook fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Facebook</div>
+                            </li>
+                            <li class="icons">
+                                <a href="https://www.twitter.com" class="twitter">
+                                    <i class="fa-brands fa-square-x-twitter fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Twitter</div>
+                            </li>
+                            <li class="icons">
+                                <a href="https://www.instagram.com" class="instagram">
+                                    <i class="fa-brands fa-square-instagram fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Instagram</div>
+                            </li>
+                            <li class="icons">
+                                <a href="https://youtube.com" class="youtube">
+                                    <i class="fa-brands fa-youtube fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Youtube</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-text">
+                    <div class="contact-links">
+                        <a href="../general/contact.html">Contact us</a>
+                        <a href="../general/about.html">About us</a>
+                    </div>
+                    <hr>
+                    <div class="text">
+                        <p>Kindessa would like to acknowledge the Traditional Custodians of the many lands on which we
+                            live
+                            and
+                            work.<br>We would also like to pay respect to Elders past and present and extend that
+                            respect to
+                            all
+                            Aboriginal and Torres Strait Islander Peoples.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        var orgsVue = new Vue({
+            el: '#joined-events',
+            data: {
+                events: [],
+                logged_in: false,
+                check_manager: false,
+                check_admin: false
+            },
+            created() {
+                this.fetchEvents();
+                this.check_login();
+            },
+            methods: {
+                // fetches list of events user joined
+                fetchEvents() {
+                    fetch('/users/joined_events')
+                        .then(response => response.json())
+                        .then(data => {
+                            this.events = data;
+                        })
+                        .catch(error => {
+                            console.error('Error fetching events:', error);
+                        });
+                },
+                check_login() {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = () => {
+                        if (xhttp.readyState === 4) {
+                            if (xhttp.status === 200) {
+                                const response = JSON.parse(xhttp.responseText);
+                                this.logged_in = true;
+                                this.check_manager = response.role_id === 'manager';
+                                this.check_admin = response.role_id === 'admin';
+                            } else {
+                                this.logged_in = false;
+                                this.check_manager = false;
+                                this.check_admin = false;
+                            }
+                        }
+                    };
+                    xhttp.open('GET', '/check-login', true);
+                    xhttp.send();
+                },
+                // should redirect the user to the detail page of the selected event
+                viewEvents(eventId) {
+                    // Redirect to event detail page
+                    window.location.href = `/general/event_individual.html?event_id=${eventId}`;
+                },
+
+                // allow user to leave event
+                leaveEvent(eventId) {
+                    if (confirm('Are you sure you want to leave this event?')) {
+                        fetch('/users/leave-event', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ event_id: eventId }),
+                        })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Failed to leave event');
+                                }
+                                return response.json();
+                            })
+                            .then(data => {
+                                if (data.success) {
+                                    this.fetchEvents(); // Refresh the list
+                                    alert('Successfully left the event');
+                                } else {
+                                    throw new Error('Failed to leave event');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error leaving event:', error);
+                                alert('An error occurred. Please try again.');
+                            });
+                    }
+                },
+                logout() {
+                    fetch('/logout', {
+                        method: 'POST',
+                        credentials: 'same-origin'
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                console.log('Logout successful'); // Log success
+                                this.logged_in = false;
+                                window.location.href = '../index.html';
+                            } else {
+                                console.error('Logout failed'); // Log failure
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error during logout:', error);
+                        });
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

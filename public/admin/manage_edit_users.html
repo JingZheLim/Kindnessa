@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kindnessa</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../headFoot.css">
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <link rel="stylesheet" href="/admin/stylesheets/manage_edit_users.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="../javascripts/check_login.js" defer></script>
+    <script src="../javascripts/logout.js" defer></script>
+    <script src="../javascripts/web.js"></script>
+
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/3b05a2b1b3.js" crossorigin="anonymous"></script>
+</head>
+
+<!--The header of the page-->
+
+<body>
+    <div class="header-container" id="app">
+        <div class="header">
+            <a class="logo-color" href="../"><i class="fa-solid fa-hand-holding-heart fa-2xl"></i> Kindnessa</a>
+            <a href="../general/about.html">About</a>
+            <a href="../general/organisation.html">Organisations</a>
+            <a href="../general/newfeeds.html">News Feed</a>
+            <a href="../general/event.html">Events</a>
+            <a href="../general/contact.html">Contact Us</a>
+            <!-- Add login icon -->
+            <a v-show="!logged_in" href="../general/login.html" class="login"><i class="fas fa-sign-in-alt"></i> Log
+                in</a>
+            <div v-show="logged_in" class="dropdown">
+                <button type="button" class="dropbtn"><i class="fa-solid fa-user"></i>
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="../user/profile.html">Profile</a>
+                    <a v-if="!check_admin" href="../user/joined_events.html">My Events</a>
+                    <a v-if="!check_admin" href="../user/joined_orgs.html">My Organisations</a>
+                    <a v-if="check_manager" href="../manager" class="manager-tools">Manager
+                        Tools</a>
+                    <a v-if="check_admin" href="../admin" class="manager-tools">Admin Tools</a>
+                    <a href="../general/logout.html" @click="logout()">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--The header-->
+    <div class="page-title">
+        <div class="inside-page">
+            <p>Edit Profile</p>
+        </div>
+    </div>
+
+    <!--The main body-->
+    <div class="main-div" id="account-info">
+
+
+        <aside class="side-bar"> <!-- Buttons (Left div)-->
+            <button onclick="location.href='/admin'" type="button">BACK</button>
+            <button style="background-color: #7796CB;" type="button">MANAGE USERS</button>
+        </aside>
+
+        <div class="edit-profile-container"> <!-- Account Info (right div)-->
+            <p id="title">Account Information</p>
+            <p id="big-text">ID: {{ userId }}</p>
+
+            <!-- First Name -->
+            <div class="space-box">
+                <div class="input-container">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" class="first-input-text" v-model="firstName">
+                </div>
+            </div>
+
+            <br>
+
+            <!-- Last Name -->
+            <div class="space-box">
+                <div class="input-container">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" class="first-input-text" v-model="lastName">
+                </div>
+            </div>
+
+            <br>
+
+            <!-- Email -->
+            <div class="space-box">
+                <div class="input-container" id="email-box">
+                    <label for="email">Email</label>
+                    <input type="text" class="first-input-text" id="email" v-model="email">
+                </div>
+            </div>
+
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <div class="space-box">
+
+                <!-- Delete Account and Save Changes Button -->
+                <div class="button-container">
+                    <button type="button" @click="deleteAccount">Delete Account</button>
+                </div>
+                <div class="button-container" id="save-button">
+                    <button type="button" @click="saveChanges">Save Changes</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer>
+        <div class="inside-footer">
+            <div class="social-links">
+                <div class="links">
+                    <ul class="social-list">
+                        <li class="icons">
+                            <a href="https://www.facebook.com" class="facebook">
+                                <i class="fa-brands fa-square-facebook fa-2xl"></i>
+                            </a>
+                            <div class="tooltip">Facebook</div>
+                        </li>
+                        <li class="icons">
+                            <a href="https://www.twitter.com" class="twitter">
+                                <i class="fa-brands fa-square-x-twitter fa-2xl"></i>
+                            </a>
+                            <div class="tooltip">Twitter</div>
+                        </li>
+                        <li class="icons">
+                            <a href="https://www.instagram.com" class="instagram">
+                                <i class="fa-brands fa-square-instagram fa-2xl"></i>
+                            </a>
+                            <div class="tooltip">Instagram</div>
+                        </li>
+                        <li class="icons">
+                            <a href="https://youtube.com" class="youtube">
+                                <i class="fa-brands fa-youtube fa-2xl"></i>
+                            </a>
+                            <div class="tooltip">Youtube</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-text">
+                <div class="contact-links">
+                    <a href="../general/contact.html">Contact us</a>
+                    <a href="../general/about.html">About us</a>
+                </div>
+                <hr>
+                <div class="text">
+                    <p>Kindessa would like to acknowledge the Traditional Custodians of the many lands on which we
+                        live
+                        and
+                        work.<br>We would also like to pay respect to Elders past and present and extend that
+                        respect to
+                        all
+                        Aboriginal and Torres Strait Islander Peoples.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--The Vue instance-->
+    <script>
+        new Vue({
+            el: '#account-info',
+            data: {
+                userId: '',
+                firstName: '',
+                lastName: '',
+                email: '',
+            },
+            async created() {
+                // Extract user_id from the URL
+                const urlParams = new URLSearchParams(window.location.search);
+                const userId = urlParams.get('user_id');
+
+                // Make AJAX request to fetch user account info
+                fetch(`/admin/account-info?user_id=${userId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        // Update Vue data with fetched user account info
+                        this.userId = data.user_id;
+                        this.firstName = data.given_name;
+                        this.lastName = data.family_name;
+                        this.email = data.email;
+                    })
+                    .catch(error => {
+                        console.error('Error fetching user data:', error);
+                    });
+            },
+
+            methods: {
+                saveChanges() {
+                    // Make AJAX POST request to update user profile
+                    fetch(`/admin/update-profile?user_id=${userId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            firstName: this.firstName,
+                            lastName: this.lastName,
+                            email: this.email,
+                        }),
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                alert("Profile successfully updated!");
+                            } else {
+                                alert(data.message || "Failed to update profile!");
+                            }
+                        })
+                        .catch((error) => {
+                            console.error('Error: ', error);
+                            alert("Error updating profile!");
+                        });
+                },
+
+                async deleteAccount() {
+                    if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+                        try {
+                            const response = await fetch(`/admin/delete-account?user_id=${this.userId}`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    userId: this.userId
+                                }),
+                            });
+
+                            if (response.ok) {
+                                alert("Your account has been successfully deleted.");
+                                window.location.href = '/';
+                            } else {
+                                const errorData = await response.json();
+                                alert(`Failed to delete account: ${errorData.message}`);
+                            }
+                        } catch (error) {
+                            console.error('Error deleting account:', error);
+                            alert("An error occurred while trying to delete your account. Please try again later.");
+                        }
+                    }
+                },
+            }
+        });
+    </script>
+
+</body>
+
+</html>

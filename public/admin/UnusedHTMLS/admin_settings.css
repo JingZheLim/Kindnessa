@@ -1,0 +1,336 @@
+body {
+    color: #333533;
+    background-color: #FFFFFF;
+    padding: 0;
+    margin: 0;
+    font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+/*******************************/
+/************ HEADER ***********/
+/*******************************/
+.header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #576490;
+    color: #FFFFFF;
+    border-bottom: 1px solid #333533;
+}
+
+ul {
+    padding-left: 0;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: #CFDBD5;
+    /* Change color */
+    text-decoration: none;
+    margin: auto;
+    font-size: 20px;
+    /* maybe */
+    font-weight: bold;
+}
+
+.logo_color {
+    color: black;
+    /* Change color */
+    text-decoration: none;
+}
+
+
+/*******************************/
+/********* BREADCRUMBS *********/
+/*******************************/
+.bread-crumbs {
+    margin: 1.5% 5% 1.5% 5%;
+    color: #000;
+
+}
+
+.bread-crumbs a {
+    color: #000;
+    /*text-decoration: none;*/
+}
+
+/*******************************/
+/********** PAGE TITLE *********/
+/*******************************/
+.page-title {
+    background-color: #7796CB;
+    /* Background color */
+    /* Padding inside the section */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: black;
+    font-size: 30px;
+    color: #FFFFFF;
+    font-size: 35px;
+}
+
+.inside-page {
+    margin: 1.5% 5% 1.5% 5%;
+}
+
+/*******************************/
+/*********** MAIN DIV **********/
+/*******************************/
+
+/*settings.html*/
+.main-div {
+    display: flex;
+}
+
+/*******************************/
+/********** L Side Bar *********/
+/*******************************/
+.side-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #D1D2F9;
+    margin-right: 5%;
+    max-width: 25%;
+    min-width: 25%;
+    padding: 2% 0% 2% 0%;
+}
+
+.side-bar button {
+    margin: 2% 0% 2% 0%;
+    background-color: #576490;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    font-size: 80%;
+    width: 70%;
+    max-height: 70px;
+    min-height: 70px;
+}
+
+.side-bar button:hover {
+    background-color: #7796CB;
+}
+
+#default-button {
+    background-color: #7796CB;
+}
+
+/*******************************/
+/********** SETTINGS *********/
+/*******************************/
+.edit-profile-container {
+    margin: 1% 5% 1% 1%;
+    width: 75%;
+}
+
+label {
+    display: block;
+    font-size: 100%;
+}
+
+.input-text {
+    width: 80%;
+    height: 50px;
+    background-color: #C9CAD9;
+    border: none;
+    border-radius: 8px;
+    padding-left: 10px;
+    font-size: 90%;
+}
+
+.first-input-text{
+    width: 80%;
+    height: 50px;
+    background-color: #C9CAD9;
+    border: none;
+    border-radius: 8px;
+    padding-left: 10px;
+    font-size: 90%;
+}
+
+.input-container {
+    margin-bottom: 20px;
+}
+
+.space-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#title {
+    color: black;
+    font-size: 150%;
+}
+
+#big-text {
+    color: black;
+    font-size: 120%;
+}
+
+.button-container{
+    margin-bottom: 10%;
+    display: flex;
+    margin-right: 10%;
+}
+
+#email-box{
+    width: 100%;
+    max-height: 20px;
+}
+
+#save-button{
+    justify-self: flex-end;
+}
+
+.button-container button {
+    background-color: #576490;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 15px;
+    width: 150px;
+    height: 50px;
+    font-weight: bold;
+}
+
+#save-button button:hover {
+    background-color: #7796CB;
+}
+
+/* Below until FOOTER is not for settings.html (DO NOT DELETE)*/
+.event-image img {
+    max-width: 400px;
+    max-height: 400px;
+    width: 400px;
+    height: 400px;
+    border: 1px solid black;
+}
+
+.below-event-image p {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.below-event-image {
+    text-align: center;
+}
+
+.below-event-image button {
+    color: white;
+    background-color: #576490;
+    text-align: center;
+    width: 150px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.joined-events {
+    padding: 60px 30px 60px 30px;
+    margin: 0px 30px 50px 30px;
+
+}
+
+.image-in-middle {
+    margin: auto;
+    display: flex;
+    flex-wrap: warp;
+    flex: 1;
+}
+
+/*******************************/
+/******** NOTIFICATIONS ********/
+/*******************************/
+
+.email-notifications {
+    width: 100%;
+}
+
+.notification-types {
+    display: flex;
+    flex-direction: column;
+    background-color: #D1D2F9;
+}
+
+.notification-row {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.checkboxes {
+    width: 35px;
+    height: 35px;
+}
+
+/*******************************/
+/************ FOOTER ***********/
+/*******************************/
+footer {
+    background-color: #7796CB;
+    color: black;
+    font-family: 'Libre Franklin';
+    border-top: 1px solid #333533;
+}
+
+.inside-footer {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin: 2% 5% 0% 5%;
+}
+
+.social-links {
+    width: auto;
+    text-align: left;
+}
+
+.contact-links {
+    margin: 0% 0% 2% 0%;
+}
+
+.links {
+    display: flex;
+}
+
+.social-links a {
+    color: black;
+    margin: 0% 3% 0% 0%;
+}
+
+.social-links p {
+    font-size: 20px;
+    /* maybe */
+    font-weight: bold;
+}
+
+.footer-text {
+    display: flex;
+    margin: 1% 0% 1% 5%;
+    text-align: left;
+    float: left;
+    flex-direction: column;
+}
+
+.footer-text hr {
+    border: none;
+    border-top: 1px solid black;
+    width: 100%;
+}

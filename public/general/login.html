@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log In - Kindnessa</title>
+  <link rel="stylesheet" href="../stylesheets/login.css">
+  <script src="../javascripts/login.js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="links">
+      <a href="../index.html" class="back-link">Back to main page</a>
+      <a href="../index.html" class="logo back-link">Kindnessa</a>
+    </div>
+    <h1>Log in</h1>
+
+    <div id="error-message" class="error-message">Email or Password not matched!</div>
+
+    <form id="login-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Please enter your email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Please enter your password" required>
+      </div>
+      <button type="submit" class="btn-primary">Log in</button>
+    </form>
+
+    <div class="links">
+      <a href="#" class="forgot-password">Forgot Password</a>
+      <a href="signup.html" class="create-account">Create Account</a>
+    </div>
+  </div>
+
+</body>
+
+</html>

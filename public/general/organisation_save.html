@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kindnessa</title>
+    <meta charset="UTF-8">
+    <script src="javascripts/check_login.js" defer></script>
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <link rel="stylesheet" href="../stylesheets/organisation.css">
+    <link rel="stylesheet" href="../headFoot.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/3b05a2b1b3.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="header-container" id="app">
+        <div class="header">
+            <a class="logo-color" href="../"><i class="fa-solid fa-hand-holding-heart fa-2xl"></i> Kindnessa</a>
+            <a href="../general/about.html">About</a>
+            <a href="../general/organisation.html">Organisations</a>
+            <a href="../general/newfeeds.html">News Feed</a>
+            <a href="../general/event.html">Events</a>
+            <a href="../general/contact.html">Contact Us</a>
+            <!-- Add login icon -->
+            <a v-show="!logged_in" href="../general/login.html" class="login"><i class="fas fa-sign-in-alt"></i> Log
+                in</a>
+            <div v-show="logged_in" class="dropdown">
+                <button type="button" class="dropbtn"><i class="fa-solid fa-user"></i>
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="../user/profile.html">Profile</a>
+                    <a href="../user/joined_events.html">My Events</a>
+                    <a href="../user/joined_orgs.html">My Organisations</a>
+                    <a v-if="check_manager" href="../manager/manage_organisations.html" class="manager-tools">Manager
+                        Tools</a>
+                    <a v-if="check_admin" href="../admin/admin.html" class="manager-tools">Admin Tools</a>
+                    <a href="../general/logout.html">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page Title -->
+    <div class="page-title">
+        <div class="inside-page">
+            <p>All Organisations</p>
+        </div>
+    </div>
+
+    <!--Organisation cards-->
+
+    <div class="all-orgs">
+        <div class="org-card-container" id="org-list-container">
+            <!-- <div class="org-card">
+                <a href="/general/organisations/org_1.html">
+                    <img src="../images/org1_resized.jpeg" alt="quokka">
+                </a>
+                <div class="org-card-content">
+                    <p>Organisation 1</p>
+                </div>
+            </div>
+
+            <div class="org-card">
+                <img src="../images/org2_resized.jpg" alt="cat">
+                <div class="org-card-content">
+                    <p>Organisation 2</p>
+                </div>
+            </div>
+
+            <div class="org-card">
+                <img src="../images/org3.png" alt="casper">
+                <div class="org-card-content">
+                    <p>Organisation 3</p>
+                </div>
+            </div>
+
+            <div class="org-card">
+                <img src="../images/org4_resized.png" alt="casper">
+                <div class="org-card-content">
+                    <p>Organisation 4</p>
+                </div>
+            </div>
+            <div class="org-card">
+                <img src="../images/org5_resized.png" alt="casper">
+                <div class="org-card-content">
+                    <p>Organisation 5</p>
+                </div>
+            </div>
+
+            <div class="org-card">
+                <img src="../images/org6_resized.png" alt="casper">
+                <div class="org-card-content">
+                    <p>Organisation 6</p>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <script>load_organisation()</script>
+    <!--Footer-->
+    <footer>
+        <div class="inside-footer">
+            <div class="social-links">
+                <div class="logo">
+                    <p><i class="fa-solid fa-hand-holding-heart fa-2xl"></i>Kindnessa </p>
+                </div>
+                <div class="links"><a href="https://www.facebook.com"><i
+                            class="fa-brands fa-square-facebook fa-2xl"></i></a>
+                    <a href="https://www.twitter.com"><i class="fa-brands fa-square-x-twitter fa-2xl"></i></a>
+                    <a href="https://www.instagram.com"><i class="fa-brands fa-square-instagram fa-2xl"></i></a>
+                    <a href="https://youtube.com"><i class="fa-brands fa-youtube fa-2xl"></i></a>
+                </div>
+
+            </div>
+
+            <div class="footer-text">
+                <div class="contact-links">
+                    <a href="https://www.youtube.com/">Contact us</a> |
+                    <a href="https://github.com/">About us</a> |
+                    <a href="https://www.w3schools.com/html/html_links.asp">Newsletter</a>
+                </div>
+                <hr>
+                <div class="text">
+                    <p>Kindessa would like to acknowledge the Traditional Custodians of the many lands on which we
+                        live
+                        and
+                        work.<br>We would also like to pay respect to Elders past and present and extend that
+                        respect to
+                        all
+                        Aboriginal and Torres Strait Islander Peoples.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="../javascripts/web.js"></script>
+</body>
+
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kindnessa</title>
+    <meta charset="UTF-8">
+    <script src="javascripts/check_login.js" defer></script>
+    <link rel="stylesheet" href="../headFoot.css">
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <link rel="stylesheet" href="/general/stylesheets/individual_organisation.css">
+    <script src="../javascripts/web.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/3b05a2b1b3.js" crossorigin="anonymous"></script>
+</head>
+
+<!--The header of the page-->
+
+<body>
+    <div class="header">
+        <header>
+            <nav>
+                <ul>
+                    <li><a class="logo_color" href="index.html"><i
+                                class="fa-solid fa-hand-holding-heart fa-2xl"></i>Kindnessa</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="organisation.html">Organisations</a></li>
+                    <li><a href="newfeeds.html">News Feed</a></li>
+                    <li><a href="event.html">Event</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <!-- Add login icon -->
+                    <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Log in</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <!--Breadcrumbs-->
+    <div class="bread-crumbs">
+        <div class="inside-bread">
+            <a href="../index.html">Home</a> &gt;
+            <a href="/general/organisation.html">Organisation</a> &gt;
+            <span>Organisation 3</span>
+        </div>
+    </div>
+
+    <!--The header-->
+    <div class="page-title">
+        <div class="inside-page">
+            <p>Organisation 3</p>
+        </div>
+    </div>
+
+    <!--The main div-->
+    <div class="outside-div">
+        <div class="inside-div">
+            <div id="org-image">
+                <img src="../images/cutecatmeow.jpg" alt="Organisation Image">
+            </div>
+            <div><!--Holds the About org + button + the text (MAIN)-->
+                <div class="about-org"> <!--Holds About and Join org-->
+                    <div id="org-title">
+                        <p>About Organisation</p>
+                        <!--Button -->
+                        <button type="button" id="edit-button">Join Organisation</button>
+                    </div>
+                </div>
+
+                <div id="fixing-p"><!--Holds the paragraph about the individual organistion -->
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in posuere dolor. Morbi
+                        scelerisque, neque eu
+                        laoreet sagittis, ligula felis vulputate ex, a elementum ante ex ut sapien. Vestibulum ut
+                        dapibus neque. Cras
+                        vestibulum laoreet velit non molestie. Nam pellentesque lorem at elit mattis tincidunt. Sed
+                        volutpat efficitur fringilla.
+                        Quisque lobortis est sed vulputate malesuada. Mauris sem tellus, condimentum ac vulputate eget,
+                        laoreet id nunc.
+                        Quisque tincidunt consectetur urna a luctus. Sed porta magna iaculis rhoncus venenatis.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in posuere dolor. Morbi
+                        scelerisque, neque eu
+                        laoreet sagittis, ligula felis vulputate ex, a elementum ante ex ut sapien. Vestibulum ut
+                        dapibus neque. Cras
+                        vestibulum laoreet velit non molestie. Nam pellentesque lorem at elit mattis tincidunt. Sed
+                        volutpat efficitur fringilla.
+                        Quisque lobortis est sed vulputate malesuada. Mauris sem tellus, condimentum ac vulputate eget,
+                        laoreet id nunc.
+                        Quisque tincidunt consectetur urna a luctus. Sed porta magna iaculis rhoncus venenatis.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div> <!--2nd header Organisation Posts-->
+        <div class="page-title">
+            <div class="inside-page">
+                <p>Organisation Posts</p>
+            </div>
+        </div>
+    </div>
+
+    <!--Upcoming Events-->
+    <div class="main-div">
+        <div class="events-row">
+            <div class="event">
+                <img src="../images/butters.jpg" alt="Event Image">
+                <div class="event-name">
+                    <p>Injured Paws</p>
+                </div>
+            </div>
+
+            <div class="event">
+                <div class="event-image">
+                    <img src="../images/butters.jpg" alt="Event Image">
+                </div>
+                <div class="event-name">
+                    <p>Injured Paws</p>
+                </div>
+            </div>
+
+            <div class="event">
+                <div class="event-image">
+                    <img src="../images/butters.jpg" alt="Event Image">
+                </div>
+                <div class="event-name">
+                    <p>Injured Paws</p>
+                </div>
+            </div>
+
+            <div class="event">
+                <div class="event-image">
+                    <img src="../images/butters.jpg" alt="Event Image">
+                </div>
+                <div class="event-name">
+                    <p>Injured Paws</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Footer-->
+    <footer>
+        <div class="inside-footer">
+            <div class="social-links">
+                <div class="logo">
+                    <p><i class="fa-solid fa-hand-holding-heart fa-2xl"></i>Kindnessa </p>
+                </div>
+                <div class="links"><a href="https://www.facebook.com"><i
+                            class="fa-brands fa-square-facebook fa-2xl"></i></a>
+                    <a href="https://www.twitter.com"><i class="fa-brands fa-square-x-twitter fa-2xl"></i></a>
+                    <a href="https://www.instagram.com"><i class="fa-brands fa-square-instagram fa-2xl"></i></a>
+                    <a href="https://youtube.com"><i class="fa-brands fa-youtube fa-2xl"></i></a>
+                </div>
+
+            </div>
+
+            <div class="footer-text">
+                <div class="contact-links">
+                    <a href="https://www.youtube.com/">Contact us</a> |
+                    <a href="https://github.com/">About us</a> |
+                    <a href="https://www.w3schools.com/html/html_links.asp">Newsletter</a>
+                </div>
+                <hr>
+                <div class="text">
+                    <p>Kindessa would like to acknowledge the Traditional Custodians of the many lands on which we live
+                        and
+                        work.<br>We would also like to pay respect to Elders past and present and extend that respect to
+                        all
+                        Aboriginal and Torres Strait Islander Peoples.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kindnessa</title>
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <link rel="stylesheet" href="../stylesheets/event.css">
+    <link rel="stylesheet" href="../headFoot.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/3b05a2b1b3.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="header-container">
+            <div class="header">
+                <a class="logo-color" href="../"><i class="fa-solid fa-hand-holding-heart fa-2xl"></i> Kindnessa</a>
+                <a href="../general/about.html">About</a>
+                <a href="../general/organisation.html">Organisations</a>
+                <a href="../general/newfeeds.html">News Feed</a>
+                <a href="../general/event.html">Events</a>
+                <a href="../general/contact.html">Contact Us</a>
+                <!-- Add login icon -->
+                <a v-show="!logged_in" href="../general/login.html" class="login"><i class="fas fa-sign-in-alt"></i> Log
+                    in</a>
+                <div v-show="logged_in" class="dropdown">
+                    <button type="button" class="dropbtn"><i class="fa-solid fa-user"></i>
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="../user/profile.html">Profile</a>
+                        <a href="../user/joined_events.html">My Events</a>
+                        <a href="../user/joined_orgs.html">My Organisations</a>
+                        <a v-if="check_manager" href="../manager/manager_profile.html" class="manager-tools">Manager
+                            Tools</a>
+                        <a href="../general/logout.html">Log Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Breadcrumbs-->
+        <div class="bread-crumbs">
+            <div class="inside-bread">
+                <a href="/">Home</a>
+                &gt;<span>Events</span>
+            </div>
+        </div>
+        <!--First Header-->
+        <div class="page-title">
+            <div class="inside-page">
+                <p>Upcoming Events</p>
+            </div>
+        </div>
+        <!--Upcoming Events-->
+        <div class="upcoming-div">
+            <div class="events-row">
+                <div class="event">
+                    <div class="event-image">
+                        <img src="../images/butters.jpg" alt="Event Image">
+                    </div>
+                    <div class="event-name">
+                        <p>Injured Paws</p>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="event-image">
+                        <img src="../images/ike.jpg" alt="Event Image">
+                    </div>
+                    <div class="event-name">
+                        <p>Injured Paws</p>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="event-image">
+                        <img src="../images/sniffing.png" alt="Event Image">
+                    </div>
+                    <div class="event-name">
+                        <p>Injured Paws</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Second header-->
+        <div class="page-title">
+            <div class="inside-page">
+                <p>All Events</p>
+            </div>
+        </div>
+        <!--All Events-->
+        <div class="all-div">
+            <div class="events-row">
+                <!--One event -->
+                <div class="event">
+                    <div class="event-image">
+                        <img src="../images/butters.jpg" alt="Event Image">
+                    </div>
+                    <div class="event-name">
+                        <p>Injured Paws</p>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="event-image">
+                        <img src="../images/butters.jpg" alt="Event Image">
+                    </div>
+                    <div class="event-name">
+                        <p>Injured Paws</p>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="event-image">
+                        <img src="../images/butters.jpg" alt="Event Image">
+                    </div>
+                    <div class="event-name">
+                        <p>Injured Paws</p>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="event-image">
+                        <img src="../images/butters.jpg" alt="Event Image">
+                    </div>
+                    <div class="event-name">
+                        <p>Injured Paws</p>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="event-image">
+                        <img src="../images/butters.jpg" alt="Event Image">
+                    </div>
+                    <div class="event-name">
+                        <p>Injured Paws</p>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="event-image">
+                        <img src="../images/butters.jpg" alt="Event Image">
+                    </div>
+                    <div class="event-name">
+                        <p>Injured Paws</p>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="event-image">
+                        <img src="../images/butters.jpg" alt="Event Image">
+                    </div>
+                    <div class="event-name">
+                        <p>Injured Paws</p>
+                    </div>
+                </div>
+                <div class="event">
+                    <div class="event-image">
+                        <img src="../images/butters.jpg" alt="Event Image">
+                    </div>
+                    <div class="event-name">
+                        <p>Injured Paws</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Footer-->
+        <footer>
+            <div class="inside-footer">
+                <div class="social-links">
+                    <div class="links">
+                        <ul class="social-list">
+                            <li class="icons">
+                                <a href="https://www.facebook.com" class="facebook">
+                                    <i class="fa-brands fa-square-facebook fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Facebook</div>
+                            </li>
+                            <li class="icons">
+                                <a href="https://www.twitter.com" class="twitter">
+                                    <i class="fa-brands fa-square-x-twitter fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Twitter</div>
+                            </li>
+                            <li class="icons">
+                                <a href="https://www.instagram.com" class="instagram">
+                                    <i class="fa-brands fa-square-instagram fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Instagram</div>
+                            </li>
+                            <li class="icons">
+                                <a href="https://youtube.com" class="youtube">
+                                    <i class="fa-brands fa-youtube fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Youtube</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-text">
+                    <div class="contact-links">
+                        <a href="../general/contact.html">Contact us</a>
+                        <a href="../general/about.html">About us</a>
+                        <a href="../user/profile.html">Newsletter</a>
+                    </div>
+                    <hr>
+                    <div class="text">
+                        <p>Kindessa would like to acknowledge the Traditional Custodians of the many lands on which we
+                            live
+                            and
+                            work.<br>We would also like to pay respect to Elders past and present and extend that
+                            respect to
+                            all
+                            Aboriginal and Torres Strait Islander Peoples.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+    <script>
+        Vue.component('org-card', {
+            props: ['org'],
+            template: `
+                <div class="org-card" @click="routeToOrgHomePage(org)">
+                    <img :src="org.image" :alt="org.organisation_name">
+                    <div class="org-card-content">
+                        <p>{{ org.organisation_name }}</p>
+                    </div>
+                </div>
+            `,
+            methods: {
+                routeToOrgHomePage(org) {
+                    localStorage.setItem('selectedOrg', JSON.stringify(org));
+                    window.location.href = `individual_organisation.html`;
+                }
+            }
+        });
+
+        new Vue({
+            el: '#app',
+            data: {
+                organisations: [],
+                logged_in: false,
+                check_manager: false
+            },
+            created() {
+                this.loadOrganisations();
+                this.check_login();
+            },
+            methods: {
+                loadOrganisations() {
+                    fetch('/load-orgs')
+                        .then(response => response.json())
+                        .then(data => {
+                            this.organisations = data;
+                        })
+                        .catch(error => {
+                            console.error('Error loading organisations:', error);
+                        });
+                },
+                check_login() {
+                    fetch('/check-login')
+                        .then(response => response.json())
+                        .then(data => {
+                            this.logged_in = true;
+                            this.check_manager = data.role_id === 'manager';
+                        })
+                        .catch(() => {
+                            this.logged_in = false;
+                            this.check_manager = false;
+                        });
+                },
+                logout() {
+                    fetch('/logout')
+                        .then(() => {
+                            this.logged_in = false;
+                            window.location.href = '../index.html';
+                        });
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
+
+
+.events-row {
+display: grid;
+grid-template-columns: 2fr 2fr 2fr;
+}
+
+
+.event {
+display: flex;
+flex-direction: column;
+margin: 5% 15% 5% 15%;
+align-items: center;
+background: #576490;
+position: relative;
+font-size: 20px;
+font-weight: bold;
+border-radius: 15px;
+cursor: pointer;
+overflow: hidden;
+color: white;
+}
+
+
+.event .event-image img {
+width: 100%;
+height: 400px;
+border-radius: 15px 15px 15px 15px;
+object-fit: cover;
+}
+
+.event-name {
+display: flex;
+justify-content: center;
+font-weight: bold;
+}
+
+
+.event::before,
+.event::after {
+position: absolute;
+content: attr(data-description); /* Use attribute to hold the description text */
+opacity: 0; /* Initially hidden */
+width: 0%;
+height: 0%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 25px;
+font-weight: bold;
+background-color: #A3BCF9;
+transition: all 0.5s;
+}
+
+
+.event::before {
+top: 0;
+right: 0;
+border-radius: 0 15px 0 100%;
+}
+
+.event::after {
+bottom: 0;
+left: 0;
+border-radius: 0 100% 0 15px;
+}
+
+.event:hover::before,
+.event:hover::after {
+width: 100%;
+height: 100%;
+border-radius: 15px;
+transition: all 0.5s;
+text-align: center;
+} */
+
+.event {
+position: relative;
+overflow: hidden;
+cursor: pointer;
+}
+
+.event:hover::before {
+opacity: 1; /* Show description on hover */
+}
+
+<div class="header-container" id="app">
+    <div class="header">
+        <a class="logo-color" href="../"><i class="fa-solid fa-hand-holding-heart fa-2xl"></i> Kindnessa</a>
+        <a href="../general/about.html">About</a>
+        <a href="../general/organisation.html">Organisations</a>
+        <a href="../general/newfeeds.html">News Feed</a>
+        <a href="../general/event.html">Events</a>
+        <a href="../general/contact.html">Contact Us</a>
+        <!-- Add login icon -->
+        <a v-show="!logged_in" href="../general/login.html" class="login"><i class="fas fa-sign-in-alt"></i> Log
+            in</a>
+        <div v-show="logged_in" class="dropdown">
+            <button type="button" class="dropbtn"><i class="fa-solid fa-user"></i>
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="dropdown-content">
+                <a href="../user/profile.html">Profile</a>
+                <a href="../user/joined_events.html">My Events</a>
+                <a href="../user/joined_orgs.html">My Organisations</a>
+                <a v-if="check_manager" href="../manager/manage_organisations.html"
+                    class="manager-tools">Manager Tools</a>
+                <a v-if="check_admin" href="../admin/admin.html" class="manager-tools">Admin Tools</a>
+                <a href="../general/logout.html">Log Out</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!--The header-->
+ <div class="page-title">
+    <div class="inside-page">
+        <p>Injured Paws</p>
+    </div>
+</div>
+
+<!--Event info-->
+<div class="main-div">
+    <div class="inner-main">
+        <img src="../../images/butters.jpg" alt="Event Image">
+        <div class="info-div">
+            <h3>
+                Date:
+            </h3>
+            <p>
+                *date*
+            </p>
+            <h3>
+                Time:
+            </h3>
+            <p>
+                *time*
+            </p>
+            <h3>
+                Location
+            </h3>
+            <p>
+                *Location*
+            </p>
+            <h3>
+                Hosted By:
+            </h3>
+            <p>
+                *Organisation*
+            </p>
+        </div>
+    </div>
+</div>
+
+<!--The header-->
+<div class="page-title">
+    <div class="inside-page">
+        <p>Event Details</p>
+    </div>
+</div>
+
+<!--Event description-->
+<div class="event-description">
+    <div class="description-text">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in posuere dolor. Morbi scelerisque,
+            neque
+            eu laoreet sagittis, ligula felis vulputate ex, a elementum ante ex ut sapien. Vestibulum ut dapibus
+            neque.
+            Cras vestibulum laoreet velit non molestie. Nam pellentesque lorem at elit mattis tincidunt. Sed
+            volutpat
+            efficitur fringilla. Quisque lobortis est sed vulputate malesuada. Mauris sem tellus, condimentum ac
+            vulputate eget, laoreet id nunc. Quisque tincidunt consectetur urna a luctus. Sed porta magna iaculis
+            rhoncus venenatis.
+
+            Aenean eget posuere orci, eu facilisis urna. Donec ac orci sem. In eu nibh at lacus tristique efficitur
+            vel
+            nec nulla. Aliquam erat volutpat. Nullam eros urna, ultrices sagittis vestibulum in, cursus ut quam.
+            Aliquam
+            ante diam, molestie in ipsum vitae, suscipit molestie tellus. Nulla nec lectus nulla. Cras sagittis
+            imperdiet tristique. Praesent laoreet suscipit posuere. Cras placerat dui urna, non sagittis sem
+            tristique
+            ut. Phasellus quam odio, congue quis odio nec, dictum mollis enim. Integer libero justo, porta sit amet
+            finibus gravida, imperdiet a mauris. Fusce tempus urna eu aliquam malesuada. Vivamus vel sollicitudin
+            quam,
+            eget efficitur augue.
+        </p>
+    </div>
+
+</div>
+
+edit org (old)
+<div class="Middle-field"> <!-- Edit -->
+    <p id="title">Edit Organisation</p>
+    <br>
+    <form>
+        <div class="form-group">
+            <label for="org_name">Organisation Name</label>
+            <input type="text" id="org_name" placeholder="Please enter your organisation name" required>
+        </div>
+
+        <div class="form-group">
+            <div class="parent_textarea">
+                <label for="org_description">Organisation Description</label>
+                <textarea type="text" id="org_description" class="custom-textarea"
+                    required>Please enter your organisation description</textarea>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="Right-field">
+    <div class="preview-area">
+        <img id="preview-image" src="../images/blank_avatar.png" alt="Preview">
+    </div>
+
+    <div class="org-button">
+        <div class="button_container">
+            <button type="button">Add Picture</button>
+            <button type="button">Delete Picture</button>
+
+            <div class="picture-dropzone" id="picture-dropzone">
+                <p>Click or Drag File Here to Add Picture</p>
+            </div>
+
+            <button type="button">Next</button>
+        </div>
+    </div>
+
+</div>

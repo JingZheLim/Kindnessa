@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kindnessa</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../headFoot.css">
+    <script src="javascripts/check_login.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <link rel="stylesheet" href="/admin/stylesheets/admin_settings.css">
+    <script src="../javascripts/web.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/3b05a2b1b3.js" crossorigin="anonymous"></script>
+</head>
+
+<!--The header of the page-->
+
+<body>
+    <div class="header-container" id="app">
+        <div class="header">
+            <a class="logo-color" href="../"><i class="fa-solid fa-hand-holding-heart fa-2xl"></i> Kindnessa</a>
+            <a href="../general/about.html">About</a>
+            <a href="../general/organisation.html">Organisations</a>
+            <a href="../general/newfeeds.html">News Feed</a>
+            <a href="../general/event.html">Events</a>
+            <a href="../general/contact.html">Contact Us</a>
+            <!-- Add login icon -->
+            <a v-show="!logged_in" href="../general/login.html" class="login"><i class="fas fa-sign-in-alt"></i> Log
+                in</a>
+            <div v-show="logged_in" class="dropdown">
+                <button type="button" class="dropbtn"><i class="fa-solid fa-user"></i>
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="../user/profile.html">Profile</a>
+                    <a href="../user/joined_events.html">My Events</a>
+                    <a href="../user/joined_orgs.html">My Organisations</a>
+                    <a v-if="check_manager" href="../manager/manage_organisations.html" class="manager-tools">Manager
+                        Tools</a>
+                    <a v-if="check_admin" href="../admin/admin.html" class="manager-tools">Admin Tools</a>
+                    <a href="../general/logout.html">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--The header-->
+    <div class="page-title">
+        <div class="inside-page">
+            <p>Edit Profile</p>
+        </div>
+    </div>
+
+    <!--The main body-->
+    <div class="main-div">
+
+        <aside class="side-bar"> <!-- Buttons (Left div)-->
+            <button onclick="location.href='/admin/admin_profile.html'" type="button">PROFILE</button>
+            <button onclick="location.href='/admin/admin_settings.html'" type="button" id="default-button">ACCOUNT
+                SETTINGS</button>
+            <button onclick="location.href='/admin/manage_orgs.html'" type="button">MANAGEMENT TOOLS</button>
+            <button onclick="location.href='/general/logout.html'" type="button">LOGOUT</button>
+        </aside>
+
+        <div class="edit-profile-container"> <!-- Account Info (right div)-->
+            <p id="title">Account Information</p>
+            <p id="big-text">ID: 0000000</p>
+
+            <!-- First Name -->
+            <div class="space-box">
+                <div class="input-container">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" class="first-input-text">
+                </div>
+            </div>
+
+            <br>
+
+            <!-- Last Name -->
+            <div class="space-box">
+                <div class="input-container">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" class="first-input-text">
+                </div>
+            </div>
+
+            <br>
+
+            <!-- Email -->
+            <div class="space-box">
+                <div class="input-container" id="email-box">
+                    <label for="email">Email</label>
+                    <input type="text" class="first-input-text" id="email">
+                </div>
+            </div>
+
+            <br>
+            <br>
+            <br>
+            <br>
+
+            <!-- Passwords -->
+            <div class="space-box">
+                <div class="password-container">
+                    <label for="new-pass">New Password</label>
+                    <input type="password" class="input-text" id="new-pass">
+                </div>
+
+                <div class="password-container">
+                    <label for="confirm-pass">Confirm Password</label>
+                    <input type="password" id="confirm-pass" class="input-text">
+                </div>
+            </div>
+
+            <br>
+            <br>
+            <br>
+
+
+            <div class="space-box">
+
+                <!-- Delete Account and Save Changes Button -->
+                <div class="button-container">
+                    <a href="https://cat-bounce.com/">Delete Account</a>
+                </div>
+                <div class="button-container" id="save-button">
+                    <button type="button">Save Changes</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer>
+        <div class="inside-footer">
+            <div class="social-links">
+                <div class="logo">
+                    <p><i class="fa-solid fa-hand-holding-heart fa-2xl"></i>Kindnessa </p>
+                </div>
+                <div class="links"><a href="https://www.facebook.com"><i
+                            class="fa-brands fa-square-facebook fa-2xl"></i></a>
+                    <a href="https://www.twitter.com"><i class="fa-brands fa-square-x-twitter fa-2xl"></i></a>
+                    <a href="https://www.instagram.com"><i class="fa-brands fa-square-instagram fa-2xl"></i></a>
+                    <a href="https://youtube.com"><i class="fa-brands fa-youtube fa-2xl"></i></a>
+                </div>
+
+            </div>
+
+            <div class="footer-text">
+                <div class="contact-links">
+                    <a href="https://www.youtube.com/">Contact us</a> |
+                    <a href="https://github.com/">About us</a> |
+                    <a href="https://www.w3schools.com/html/html_links.asp">Newsletter</a>
+                </div>
+                <hr>
+                <div class="text">
+                    <p>Kindessa would like to acknowledge the Traditional Custodians of the many lands on which we
+                        live
+                        and
+                        work.<br>We would also like to pay respect to Elders past and present and extend that
+                        respect to
+                        all
+                        Aboriginal and Torres Strait Islander Peoples.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

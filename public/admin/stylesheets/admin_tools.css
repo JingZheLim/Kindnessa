@@ -1,0 +1,216 @@
+/*******************************/
+/******* ALL ORGANISATION ******/
+/*******************************/
+
+.org-name-box {
+    width: 100%;
+    margin-bottom: 1px;
+    background-color: #D1D2F9;
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr 1fr;
+    justify-items: center;
+}
+
+
+.org-name-top {
+    background-color: #C9CAD9;
+}
+
+.org-button button {
+    background-color: #576490;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+    font-size: 12px;
+    width: 70px;
+    height: 30px;
+    margin: 10px 0px 10px 0px;
+}
+
+.org-button button:hover {
+    background-color: #7796CB;
+}
+
+/*******************************/
+/********** ALL POSTS **********/
+/*******************************/
+/* purple boxes to show organisation names */
+.posts-container {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    margin-bottom: 2%;
+    padding: 10px;
+    background-color: #D1D2F9;
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+    display: grid;
+    border-radius: 15px;
+}
+
+/* .posts-container-content {} */
+
+.event-box {
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    font-size: 30px;
+}
+
+.event-box-2 {
+    margin-left: 2%;
+    margin-top: -2%;
+    font-size: 15px;
+    color: rgba(0, 0, 0, 0.808);
+}
+
+.posts-container .button-container button {
+    background-color: #576490;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 15px;
+    width: 90px;
+}
+
+
+
+.posts-container .button-container {
+    position: absolute;
+    top: 20px;
+    right: 3%;
+    display: flex;
+    gap: 10px;
+}
+
+/*******************************/
+/********** ALL USERS **********/
+/*******************************/
+
+button.manager-button {
+    width: 70%;
+}
+
+/*******************************/
+/********* CREATE ORGS *********/
+/*******************************/
+.org-button .button_container  button {
+    background-color: #576490;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    padding: 5px;
+    font-size: 12px;
+    width: 70%;
+    margin-left: 7%;
+}
+
+.create-org {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 2fr 1fr;
+}
+
+
+.logo {
+    display: inline-block;
+    text-align: right;
+    font-size: 125%;
+    font-weight: bold;
+    margin-left: 0%;
+    font-family: newsreader;
+}
+
+/* for middle field */
+.form-group {
+    margin-bottom: 20px;
+    margin-left: 0%;
+    margin-right: 45%;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 98%;
+    padding: 10px 0px 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+input#org_name {
+    padding-left: 15px;
+    background-color: #C9CAD9;
+}
+
+textarea#org_description {
+    padding-left: 15px;
+    background-color: #C9CAD9;
+    size: 80%;
+}
+
+.custom-textarea {
+    width: 100%;
+    height: 100%;
+    border-radius: 2%;
+    border: 1px solid #C9CAD9;
+}
+
+.parent_textarea {
+    width: 450px;
+    height: 300px;
+}
+
+.Right-field {
+    padding-bottom: 2%;
+    align-items: center;
+}
+
+/*******************************/
+/****** Image Drop Zone ********/
+/*******************************/
+.picture-dropzone {
+    border: 2px dashed #ccc;
+    background-color: #f9f9f9;
+    color: #999;
+    text-align: center;
+    cursor: pointer;
+    height: 30%;
+    width: 70%;
+    line-height: 80px;
+    border: 2px dashed #999;
+    text-align: center;
+    margin: 5% 15% 5% 5%;
+}
+
+.picture-dropzone:hover {
+    border-color: #aaa;
+}
+
+.preview-area {
+    width: 100%;
+    height: auto;
+    margin-top: 10%;
+    text-align: center;
+}
+
+.preview-area img {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 5px;
+    display: inline;
+    margin-bottom: 5%;
+    margin-right: 20%;
+}

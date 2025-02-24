@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kindnessa</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../headFoot.css">
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <link rel="stylesheet" href="../stylesheets/contact.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="../javascripts/check_login.js" defer></script>
+    <script src="../javascripts/logout.js" defer></script>
+    <script src="../javascripts/web.js"></script>
+    <!-- Include Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://kit.fontawesome.com/3b05a2b1b3.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="header-container" id="app">
+        <div class="header">
+            <a class="logo-color" href="../"><i class="fa-solid fa-hand-holding-heart fa-2xl"></i> Kindnessa</a>
+            <a href="../general/about.html">About</a>
+            <a href="../general/organisation.html">Organisations</a>
+            <a href="../general/newfeeds.html">News Feed</a>
+            <a href="../general/event.html">Events</a>
+            <a href="../general/contact.html">Contact Us</a>
+            <!-- Add login icon -->
+            <a v-show="!logged_in" href="../general/login.html" class="login"><i class="fas fa-sign-in-alt"></i> Log
+                in</a>
+            <div v-show="logged_in" class="dropdown">
+                <button type="button" class="dropbtn"><i class="fa-solid fa-user"></i>
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-content">
+                    <a href="../user/profile.html">Profile</a>
+                    <a v-if="!check_admin" href="../user/joined_events.html">My Events</a>
+                    <a v-if="!check_admin" href="../user/joined_orgs.html">My Organisations</a>
+                    <a v-if="check_manager" href="../manager" class="manager-tools">Manager
+                        Tools</a>
+                    <a v-if="check_admin" href="../admin" class="manager-tools">Admin Tools</a>
+                    <a href="../general/logout.html" @click="logout()">Log Out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--The header-->
+    <div class="page-title">
+        <div class="inside-page">
+            <p>Contacts</p>
+        </div>
+    </div>
+
+
+    <div class="main-div">
+        <!--Picture-->
+        <div class="main-pic">
+            <img src="../images/about_page.png" class="image_container" alt="Your Image" style="width: 100%;">
+        </div>
+
+        <div class="main-div">
+            <div class="phone">
+                <h3>Phone</h3>
+                <p>+04123456789</p>
+            </div>
+            <div class="email">
+                <h3>Email</h3>
+                <p>volunteering@gmail.com</p>
+            </div>
+            <div class="location">
+                <h3>Location</h3>
+                <p>1787 Davis Terrace,<br> Rosariobury, <br>NY 73076-9024</p>
+            </div>
+        </div>
+        <br>
+    </div>
+
+        <!--Footer-->
+        <footer>
+            <div class="inside-footer">
+                <div class="social-links">
+                    <div class="links">
+                        <ul class="social-list">
+                            <li class="icons">
+                                <a href="https://www.facebook.com" class="facebook">
+                                    <i class="fa-brands fa-square-facebook fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Facebook</div>
+                            </li>
+                            <li class="icons">
+                                <a href="https://www.twitter.com" class="twitter">
+                                    <i class="fa-brands fa-square-x-twitter fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Twitter</div>
+                            </li>
+                            <li class="icons">
+                                <a href="https://www.instagram.com" class="instagram">
+                                    <i class="fa-brands fa-square-instagram fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Instagram</div>
+                            </li>
+                            <li class="icons">
+                                <a href="https://youtube.com" class="youtube">
+                                    <i class="fa-brands fa-youtube fa-2xl"></i>
+                                </a>
+                                <div class="tooltip">Youtube</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-text">
+                    <div class="contact-links">
+                        <a href="../general/contact.html">Contact us</a>
+                        <a href="../general/about.html">About us</a>
+                    </div>
+                    <hr>
+                    <div class="text">
+                        <p>Kindessa would like to acknowledge the Traditional Custodians of the many lands on which we
+                            live
+                            and
+                            work.<br>We would also like to pay respect to Elders past and present and extend that
+                            respect to
+                            all
+                            Aboriginal and Torres Strait Islander Peoples.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+</body>
+
+</html>

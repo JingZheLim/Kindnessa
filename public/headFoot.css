@@ -1,0 +1,266 @@
+body {
+    color: #333533;
+    background-color: #FFFFFF;
+    padding: 0;
+    margin: 0;
+    font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+/*******************************/
+/********* BREADCRUMBS *********/
+/*******************************/
+.bread-crumbs {
+    margin: 1.5% 5% 1.5% 5%;
+}
+
+.breadcrumbs a {
+    color: #000;
+}
+
+/*******************************/
+/********** PAGE TITLE *********/
+/*******************************/
+.page-title {
+    background-color: #7796CB;
+    /* Background color */
+    /* Padding inside the section */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 30px;
+    color: #FFFFFF;
+    font-weight: bolder;
+}
+
+.inside-page {
+    margin: 1.5% 5% 1.5% 5%;
+}
+
+/*******************************/
+/************ HEADER ***********/
+/*******************************/
+
+.header .logo-color {
+    color: black;
+}
+
+.header-container {
+    background-color: #576490;
+    border-bottom: 1px solid #333533;
+}
+
+.header {
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 2fr 2fr 2fr 2fr;
+    margin: 0% 5% 0% 5%;
+
+}
+
+.header a {
+    float: left;
+    align-items: center;
+    padding: 30px 2.9%;
+    color: #CFDBD5;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    min-width: 7%;
+}
+
+
+/*******************************/
+/********** DROP DOWN **********/
+/*******************************/
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+    text-align: center;
+}
+
+.dropdown .dropbtn {
+    font-size: 30px;
+    border: none;
+    outline: none;
+    color: #CFDBD5;
+    padding: 25px 5%;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    min-width: 100px;
+}
+
+.header a:hover,
+.dropdown:hover {
+    background-color: #7796CB;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 12.7%;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/*******************************/
+/************ FOOTER ***********/
+/*******************************/
+footer {
+    background-color: #7796CB;
+    color: black;
+    font-family: 'Libre Franklin';
+    border-top: 1px solid #333533;
+}
+
+.inside-footer {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin: 2% 5% 0% 5%;
+}
+
+.footer-text {
+    display: flex;
+    margin: 1% 0% 1% 5%;
+    text-align: left;
+    float: left;
+    flex-direction: column;
+}
+
+.footer-text hr {
+    border: none;
+    border-top: 1px solid black;
+    width: 100%;
+}
+
+/*******************************/
+/************ ICONS ************/
+/*******************************/
+
+
+ul {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.social-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.social-list .icons {
+    margin: 0 10px;
+    position: relative;
+}
+
+.social-list .icons .tooltip {
+    position: absolute;
+    top: -30px;
+    left: 55%;
+    transform: translateX(-50%);
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 15px;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.social-list .icons:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+    align-items: center;
+    top: -50px;
+}
+
+.social-list .icons a {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 20%;
+    background-color: white;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+
+.social-list .icons .facebook {
+    color: #2753a7;
+}
+
+.social-list .icons .facebook:hover,
+.social-list .icons .facebook~.tooltip {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #2753a7;
+    color: white;
+}
+
+.social-list .icons .instagram {
+    color: #cc39a4;
+}
+
+.social-list .icons .instagram:hover,
+.social-list .icons .instagram~.tooltip {
+    cursor: pointer;
+    scale: 1.1;
+    background: linear-gradient(45deg,
+            #405de6,
+            #5b51db,
+            #b33ab4,
+            #c135b4,
+            #e1306c,
+            #fd1f1f);
+    color: white;
+}
+
+.social-list .icons .twitter {
+    color: #55acee;
+}
+
+.social-list .icons .twitter:hover,
+.social-list .icons .twitter~.tooltip {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #55acee;
+    color: white;
+}
+
+.social-list .icons .youtube {
+    color: #ff0000;
+}
+
+.social-list .icons .youtube:hover,
+.social-list .icons .youtube~.tooltip {
+    cursor: pointer;
+    scale: 1.1;
+    background-color: #ff0000;
+    color: white;
+}

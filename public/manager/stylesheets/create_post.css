@@ -1,0 +1,303 @@
+/*******************************/
+/********** PAGE TITLE *********/
+/*******************************/
+.page-title {
+    background-color: #7796CB;
+    /* Background color */
+    /* Padding inside the section */
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: black;
+    font-size: 30px;
+    color: #FFFFFF;
+    font-size: 35px;
+}
+
+.inside-page {
+    margin: 1.5% 5% 1.5% 5%;
+}
+
+/*******************************/
+/*********** MAIN DIV **********/
+/*******************************/
+
+
+#edit-profile {
+    background-color: #7796CB;
+    /* Background color */
+    padding-left: 90px;
+    /* Padding inside the section */
+    padding-top: 20px;
+    padding-bottom: 10px;
+    color: #FFFFFF;
+    font-size: 35px;
+}
+
+.edit-profile-container {
+    display: flex;
+}
+
+.main-div {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 2%;
+}
+
+.user-field {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    padding: auto;
+}
+
+/*******************************/
+/********** L Side Bar *********/
+/*******************************/
+.side-bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #D1D2F9;
+    margin-right: 5%;
+    max-width: 25%;
+    min-width: 25%;
+    padding: 2% 0% 2% 0%;
+    margin-bottom: -2%;
+}
+
+.side-bar button {
+    margin: 2% 0% 2% 0%;
+    background-color: #576490;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    font-size: 80%;
+    width: 70%;
+    max-height: 70px;
+    min-height: 70px;
+}
+
+.side-bar button:hover {
+    background-color: #7796CB;
+}
+
+#default-button {
+    background-color: #7796CB;
+}
+
+/*******************************/
+/************ Main *************/
+/*******************************/
+
+label {
+    display: block;
+    font-size: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    margin-left: 0%;
+    margin-right: 45%;
+}
+
+textarea#post_description {
+    padding-left: 15px;
+    padding-top: 15px;
+    background-color: #C9CAD9;
+}
+
+.custom-textarea {
+    width: 100%;
+    height: 100%;
+    border-radius: 2%;
+    border: 1px solid #C9CAD9;
+    font-size: 90%;
+}
+
+.parent_textarea {
+    width: 880px;
+    height: 300px;
+}
+
+.input-text {
+    display: block;
+    width: 900px;
+    height: 40px;
+    background-color: #C9CAD9;
+    border: none;
+    border-radius: 8px;
+    font-size: 90%;
+}
+
+.input-container {
+    padding: 20px;
+}
+
+.input-container label {
+    font-size: 25px;
+}
+
+.input-file {
+    display: inline;
+}
+
+input#Image.input-file {
+    display: none;
+}
+
+.input-file label {
+    background-color: #576490;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 15px;
+    width: 150px;
+    height: 50px;
+    font-weight: bold;
+    text-align: center;
+    display: inline-block;
+}
+
+.input-file label:hover {
+    background-color: #7796CB;
+}
+
+img#preview {
+    border: 1px solid black;
+    border-radius: 2%;
+    margin-top: 2%;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+span#preview-text {
+    margin-left: 1%;
+}
+
+#title {
+    color: black;
+    font-size: 45px;
+    margin-left: 20px;
+    margin-top: 7%;
+    margin-bottom: 2%;
+}
+
+#big-text {
+    color: black;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+
+.button-container button {
+    background-color: #576490;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 15px;
+    width: 150px;
+    height: 50px;
+    font-weight: bold;
+    margin: 5px;
+}
+
+.button-container_2 button {
+    background-color: #576490;
+    color: white;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: 15px;
+    width: 150px;
+    height: 50px;
+    font-weight: bold;
+    margin-right: 50%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+button#save_btn {
+    align-self: flex-end;
+}
+
+.save-btn-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+/* Hover effect for buttons */
+.button-container button:hover {
+    background-color: #7796CB;
+}
+
+/* .selected is a standard class from classlist */
+.button-container .selected {
+    background-color: #7796CB;
+    color: white;
+}
+
+.button-container a {
+    font-size: 20px;
+}
+
+/*******************************/
+/************ FOOTER ***********/
+/*******************************/
+footer {
+    background-color: #7796CB;
+    color: black;
+    font-family: 'Libre Franklin';
+    border-top: 1px solid #333533;
+}
+
+.inside-footer {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin: 2% 5% 0% 5%;
+}
+
+.social-links {
+    width: auto;
+    text-align: left;
+}
+
+.contact-links {
+    margin: 0% 0% 2% 0%;
+}
+
+.links {
+    display: flex;
+}
+
+.social-links a {
+    color: black;
+    margin: 0% 3% 0% 0%;
+}
+
+.social-links p {
+    font-size: 20px;
+    /* maybe */
+    font-weight: bold;
+}
+
+.footer-text {
+    display: flex;
+    margin: 1% 0% 1% 5%;
+    text-align: left;
+    float: left;
+    flex-direction: column;
+}
+
+.footer-text hr {
+    border: none;
+    border-top: 1px solid black;
+    width: 100%;
+}
